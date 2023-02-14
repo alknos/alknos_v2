@@ -8,59 +8,59 @@ import { Logomark } from './logo'
 
 const plans = [
   {
-    name: 'Starter',
+    name: 'Alknos',
     featured: false,
     price: { Monthly: '$0', Annually: '$0' },
     description:
-      'You’re new to investing but want to do it right. Get started for free.',
+      'Empieza con el plan basico.',
     button: {
-      label: 'Get started for free',
+      label: 'Empieza gratuitamente',
       href: '/register',
     },
     features: [
-      'Commission-free trading',
-      'Multi-layered encryption',
-      'One tip every day',
-      'Invest up to $1,500 each month',
+      ' 20 Resolución de formulas por mes',
+      ' 20 Utilizar fotos para la resolución por mes',
+      '30 Usos de cualquier calculadora',
+      'Gratuito',
     ],
     logomarkClassName: 'fill-gray-300',
   },
   {
-    name: 'Investor',
+    name: 'Alkenos',
     featured: false,
-    price: { Monthly: '$7', Annually: '$70' },
+    price: { Monthly: '$49 MXN', Annually: '$490 MXN' },
     description:
-      'You’ve been investing for a while. Invest more and grow your wealth faster.',
+      'Plan para un mejor desempeño.',
     button: {
-      label: 'Subscribe',
+      label: 'Suscríbete',
       href: '/register',
     },
     features: [
-      'Commission-free trading',
-      'Multi-layered encryption',
-      'One tip every hour',
-      'Invest up to $15,000 each month',
-      'Basic transaction anonymization',
+      '50 Resolución de formulas por mes',
+      '50 Utilizar fotos para la resolución por mes',
+      '60 Usos de cualquier calculadora',
+      'Soporte personalizado',
+      '...',
     ],
     logomarkClassName: 'fill-gray-500',
   },
   {
-    name: 'VIP',
+    name: 'Alkinos',
     featured: true,
-    price: { Monthly: '$199', Annually: '$1,990' },
+    price: { Monthly: '$79 MXN', Annually: '$790 MXN' },
     description:
-      'You’ve got a huge amount of assets but it’s not enough. To the moon.',
+      'Plan para profesionales.',
     button: {
-      label: 'Subscribe',
+      label: 'Suscríbete',
       href: '/register',
     },
     features: [
-      'Commission-free trading',
-      'Multi-layered encryption',
-      'Real-time tip notifications',
-      'No investment limits',
-      'Advanced transaction anonymization',
-      'Automated tax-loss harvesting',
+      'Resolución de formulas ilimitadas',
+      'Utilizar fotos para la resolución ilimitadas',
+      'Acceso sin límites',
+      'Soporte 24/7',
+      'Historial de búsquedas',
+      '...',
     ],
     logomarkClassName: 'fill-cyan-500',
   },
@@ -128,7 +128,7 @@ function Plan({
               className={clsx(
                 'transition duration-300',
                 activePeriod === 'Annually' &&
-                  'pointer-events-none translate-x-6 select-none opacity-0'
+                'pointer-events-none translate-x-6 select-none opacity-0'
               )}
             >
               {price.Monthly}
@@ -138,7 +138,7 @@ function Plan({
               className={clsx(
                 'absolute left-0 top-0 transition duration-300',
                 activePeriod === 'Monthly' &&
-                  'pointer-events-none -translate-x-6 select-none opacity-0'
+                'pointer-events-none -translate-x-6 select-none opacity-0'
               )}
             >
               {price.Annually}
@@ -204,11 +204,11 @@ export function Pricing() {
             id="pricing-title"
             className="text-3xl font-medium tracking-tight text-gray-900"
           >
-            Flat pricing, no management fees.
+            Planes para cada necesidad.
           </h2>
           <p className="mt-2 text-lg text-gray-600">
-            Whether you’re one person trying to get ahead or a big firm trying
-            to take over the world, we’ve got a plan for you.
+            Contamos con 3 distintos planes de pago para que puedas elegir el que
+            más se adecua a lo que necesitas.
           </p>
         </div>
 
