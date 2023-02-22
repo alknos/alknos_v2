@@ -194,7 +194,7 @@ export function Pricing() {
 
   return (
     <section
-      id="pricing"
+      id='prices'
       aria-labelledby="pricing-title"
       className="border-t border-gray-200 bg-gray-100 py-20 sm:py-32"
     >

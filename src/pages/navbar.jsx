@@ -11,6 +11,7 @@ import {
   ViewGridIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import Link from 'next/link'
 
 const solutions = [
   {
@@ -64,7 +65,7 @@ export default function Navbar() {
         <Popover className="relative bg-transparent">
           <div className="flex justify-between items-center px-4 py-6 sm:px-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1 text-white font-jura text-2xl">
-              <span>alknos</span>
+              <Link href="/"><span>alknos</span></Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
               <Popover.Button className="bg-black rounded-md p-2 inline-flex items-center justify-center text-gray-300 hover:text-gray-50 hover:bg-gray-500 duration-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
@@ -125,28 +126,28 @@ export default function Navbar() {
                 )}
               </Popover>
 
-              <a href="." className="text-sm  font-light text-gray-50 hover:text-gray-300 duration-200">
+              <Link href="/#prices" scroll={true} className="text-sm  font-light text-gray-50 hover:text-gray-300 duration-200">
                 Planes
-              </a>
-              <a href="." className="text-sm  font-light text-gray-50 hover:text-gray-300 duration-200">
+              </Link>
+              <Link href="/about" className="text-sm  font-light text-gray-50 hover:text-gray-300 duration-200">
                 Nosotros
-              </a>
-              <a href="." className="text-sm  font-light text-gray-50 hover:text-gray-300 duration-200">
+              </Link>
+              <Link  href="/contacts" className="text-sm  font-light text-gray-50 hover:text-gray-300 duration-200">
                 Contáctanos
-              </a>
+              </Link>
 
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <a href="." className="whitespace-nowrap text-sm font-light text-gray-50 hover:text-gray-300">
+              <Link href="/register" className="whitespace-nowrap text-sm font-light text-gray-50 hover:text-gray-300">
                 Regístrate
-              </a>
+              </Link>
 
-              <a
-                href="."
+              <Link
+                href="/login"
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm  font-medium text-white bg-transparent"
                 rounded-md>
                 <span className='block text-white px-4 py-2 text-sm font-light rounded-md bg-black'>Inicia Sesión</span>
-              </a>
+              </Link>
             </div>
           </div>
 
