@@ -17,6 +17,9 @@ function Label({ id, children }) {
 export function TextField({
   id,
   label,
+  placeholder,
+  value,
+  onChange,
   type = 'text',
   className = '',
   ...props
@@ -24,16 +27,8 @@ export function TextField({
   return (
     <div className={className}>
       {label && <Label id={id}>{label}</Label>}
-      <input id={id} type={type} {...props} className={formClasses} />
+      <input id={id} placeholder={placeholder} value={value} onChange={onChange} type={type} {...props} className={formClasses} />
     </div>
   )
 }
 
-export function SelectField({ id, label, className = '', ...props }) {
-  return (
-    <div className={className}>
-      {label && <Label id={id}>{label}</Label>}
-      <select id={id} {...props} className={clsx(formClasses, 'pr-8')} />
-    </div>
-  )
-}
