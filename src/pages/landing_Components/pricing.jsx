@@ -40,14 +40,14 @@ const plans = [
       '50 Utilizar fotos para la resolución por mes',
       '60 Usos de cualquier calculadora',
       'Soporte personalizado',
-      '...',
+      'Recomendado para estudiantes de Preparatoria o Universidad',
     ],
     logomarkClassName: 'fill-gray-500',
   },
   {
     name: 'Alkinos',
     featured: true,
-    price: { Monthly: '$79 MXN', Annually: '$790 MXN' },
+    price: { Monthly: 'Contáctanos para plan mensual', Annually: 'Contáctanos para plan anual' },
     description:
       'Plan para profesionales.',
     button: {
@@ -55,12 +55,12 @@ const plans = [
       href: '/register',
     },
     features: [
-      'Resolución de formulas ilimitadas',
-      'Utilizar fotos para la resolución ilimitadas',
-      'Acceso sin límites',
+      'Resolución de formulas personalizadas',
+      'Utilizar fotos para la resolución personalizadas',
+      'Acceso adecuado para ti',
       'Soporte 24/7',
       'Historial de búsquedas',
-      '...',
+      'Recomendado para un ámbito profesional',
     ],
     logomarkClassName: 'fill-cyan-500',
   },
@@ -194,7 +194,7 @@ export function Pricing() {
 
   return (
     <section
-      id="pricing"
+      id='prices'
       aria-labelledby="pricing-title"
       className="border-t border-gray-200 bg-gray-100 py-20 sm:py-32"
     >
