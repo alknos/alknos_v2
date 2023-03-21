@@ -1,0 +1,13 @@
+html,
+body,
+#root {
+  scroll-behavior: smooth;
+  height: 100%;
+  margin: 0;
+  background: #ffffff;}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
