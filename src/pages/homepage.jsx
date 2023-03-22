@@ -1,13 +1,12 @@
-import Navhome from './navhome'
+import Navbar from "./navbar"
 
- function Homepage({ Component,  pageProps }) {
+function Homepage({ Component, pageProps }) {
 
-    return (
-        <>
-            <Navhome/>
-            <Component {...pageProps} />
-        </>
-    )
+    return <>
+        <Navbar />
+        <Component {...pageProps} />
+    </>
+
 }
 
 export default Homepage

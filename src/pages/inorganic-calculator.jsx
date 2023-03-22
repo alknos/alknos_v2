@@ -78,18 +78,6 @@ export default function InorganicCalculator() {
                 const showProducts = (dataToShow) => {
                     console.log(dataToShow[0])
                     arrayData.push(dataToShow[0])
-                    new swal({
-                        title: "Productos",
-                        text: JSON.stringify(dataToShow[0])
-                            .replaceAll(",", "\n")
-                            .replaceAll("[", "")
-                            .replaceAll("]", "")
-                            .replaceAll("{", "")
-                            .replaceAll("}", "")
-                            .replaceAll('"', "")
-                            .replaceAll("properties:", "")
-                            .replaceAll("null", ""),
-                    }).then(() => {
                         //then
                         dataToShow.shift();
                         
@@ -99,11 +87,9 @@ export default function InorganicCalculator() {
                             console.log(arrayData)
                             assignData(arrayData)
                         }
-                    });
                 };
 
                 showProducts(data);
-
 
 
             })
