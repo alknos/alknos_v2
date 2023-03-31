@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
 import { BeakerIcon } from "@heroicons/react/24/outline";
+import MainLayout from "Layout/MainLayout";
 
 export default function InorganicCalculator() {
     var arrayData = []
@@ -12,10 +13,12 @@ export default function InorganicCalculator() {
     //Información de productos
     const [product1, setProduct1] = useState("Producto 1");
     const [product2, setProduct2] = useState("Producto 2");
+
     const [nomSis_product1, setNomSis_product1] = useState("-");
     const [nomStock_product1, setNomStock_product1] = useState("-");
     const [nomTrad_product1, setNomTrad_product1] = useState("-");
     const [tipo_product1, setTipo_product1] = useState("-");
+
     const [nomSis_product2, setNomSis_product2] = useState("-");
     const [nomStock_product2, setNomStock_product2] = useState("-");
     const [nomTrad_product2, setNomTrad_product2] = useState("-");
@@ -30,7 +33,6 @@ export default function InorganicCalculator() {
             setNomTrad_product1(compoundData[0].properties.nomenclatura_tradicional)
             setTipo_product1(compoundData[0].properties.tipo_compuesto)
         }
-        console.log(compoundData[1].formula === 'H2O')
         //Producto 2
         setProduct2(compoundData[1].formula);
         if (compoundData[1].properties !== null) {
@@ -51,7 +53,6 @@ export default function InorganicCalculator() {
             setNomTrad_product2("agua")
             setTipo_product2("anhídrido")
         }
-
     }
 
     const handleChange = (event) => {
@@ -78,6 +79,7 @@ export default function InorganicCalculator() {
                 const showProducts = (dataToShow) => {
                     console.log(dataToShow[0])
                     arrayData.push(dataToShow[0])
+                    
                         //then
                         dataToShow.shift();
                         
@@ -87,9 +89,11 @@ export default function InorganicCalculator() {
                             console.log(arrayData)
                             assignData(arrayData)
                         }
+                    ;
                 };
 
                 showProducts(data);
+
 
 
             })
@@ -108,7 +112,8 @@ export default function InorganicCalculator() {
             });
     };
     return (
-        <div className="py-10">
+<MainLayout>
+<div className="py-10">
             <header>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Calculadora de Reacciones Inorgánicas</h1>
@@ -291,5 +296,6 @@ export default function InorganicCalculator() {
                 </div>
             </div>
         </div >
+</MainLayout>
     );
 }

@@ -1,12 +1,16 @@
-import Navbar from "./navbar"
+import MainLayout from "Layout/MainLayout"
+import MainPage from "./homepageComponent/mainPage"
 
-function Homepage({ Component, pageProps }) {
 
-    return <>
-        <Navbar />
-        <Component {...pageProps} />
-    </>
+function Homepage() {
 
+    return (
+        <MainLayout>
+            <div>
+                <MainPage />
+            </div>
+        </MainLayout>
+    )
 }
 
 export default Homepage

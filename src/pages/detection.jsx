@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import Visualization from './detectionComponent/visualization'
 import axios from "axios";
 import swal from "sweetalert2";
+import Link from "next/link";
+import MainLayout from "Layout/MainLayout";
 
 export default function Detection() {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [iupac_name, setIupacName] = useState("Nombre IUPAC");
     const [common_name, setCommonName] = useState("");
-    const [general_info, setGeneralInfo] = useState("Informácion General Del Compuesto");
+    const [general_info, setGeneralInfo] = useState("Información General Del Compuesto");
 
     useEffect(()=>{
         requestGet()
@@ -17,7 +19,7 @@ export default function Detection() {
     //Functions
     const getBase64 = (file) => {
         return new Promise((resolve) => {
-            let fileInfo;
+        
             let baseURL = "";
             // Make new FileReader
             let reader = new FileReader();
@@ -122,6 +124,7 @@ export default function Detection() {
 
     return (
         <>
+            <MainLayout>
             <div className="p-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  ">
                 <header>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -142,7 +145,7 @@ export default function Detection() {
 
                     <dl className="grid grid-cols-1 gap-5 mt-5 sm:grid-cols-6">
                         <div className="px-4 py-5 overflow-hidden bg-white rounded-lg sm:p-6">
-
+                        
                         </div>
                         <div className="px-4 py-5 overflow-hidden bg-white rounded-lg sm:p-6">
 
@@ -202,8 +205,7 @@ export default function Detection() {
                     </div>
                 </div>
             </div>
+            </MainLayout>
         </>
     )
 }
-
-
