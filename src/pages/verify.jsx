@@ -41,7 +41,7 @@ export default function Verify() {
         }
 
         axios
-            .post(baseURL, formData, config)
+            .get(baseURL, formData, config)
             .then((response) => {
                 console.log(response.data);
                 window.location.href = 'http://localhost:3000/login';

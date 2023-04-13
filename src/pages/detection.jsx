@@ -9,7 +9,7 @@ export default function Detection() {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [iupac_name, setIupacName] = useState("Nombre IUPAC");
-    const [common_name, setCommonName] = useState("");
+    const [common_name, setCommonName] = useState("-");
     const [general_info, setGeneralInfo] = useState("Información General Del Compuesto");
 
     useEffect(()=>{

@@ -9,7 +9,7 @@ import { Screencasts } from "./landing_Components/screencasts"
 
 export default function Home() {
   return (
-    <div className="bg-black w-full">
+    <div className="bg-white w-full">
 
       <Navbar />
       <Hero />

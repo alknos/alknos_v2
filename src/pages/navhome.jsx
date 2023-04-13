@@ -8,12 +8,14 @@ import {
   HomeIcon,
   QuestionMarkCircleIcon,
   ScaleIcon,
+  MagnifyingGlassIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 const navigation = [
   { name: 'Inicio', href: '/homepage', icon: HomeIcon, current: true },
+  { name: 'Búsqueda', href: '/searchCompound', icon: MagnifyingGlassIcon, current: false },
   { name: 'Calculadora', href: '/sty-calculator', icon: ClockIcon, current: false },
   { name: 'Detección', href: '/detection', icon: ScaleIcon, current: false },
   { name: 'Reacciones', href: '/inorganic-calculator', icon: CreditCardIcon, current: false },

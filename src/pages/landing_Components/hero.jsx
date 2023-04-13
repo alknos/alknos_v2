@@ -13,20 +13,21 @@ export default function Hero() {
                             <div>
                             </div>
                             <div className="mt-6">
-                                <h1 className="font-medium text-transparent text-7xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                                <h1 className="font-medium text-transparent text-7xl bg-clip-text bg-gradient-to-r from-blue-400 to-teal-500">
                                     Misma química.
                                 </h1>
                                 <br />
-                                <h1 className="text-white text-7xl">
+                                <h1 className="text-black text-7xl font-medium tracking-tight">
                                     Mejor ciencia.
                                 </h1>
-                                <p className="mt-4 text-lg text-gray-400">
+                                <br/>
+                                <p className="mt-4 text-lg text-gray-500">
                                     Bienvenido a una nueva forma de ver la química.  Impulsado por IA, ofrecemos las mejores herramientas con los mejores resultados.
                                 </p>
                                 <div className="mt-8 w-max">
-                                    <div class="p-1 rounded-lg bg-gradient-to-r from-pink-600 to-purple-400">
-                                        <button class="px-6 py-2 rounded-lg bg-black">
-                                            <h1 class="px-6 py-2 rounded-lg text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">¡Empieza ya!</h1>
+                                    <div class="p-1 rounded-lg bg-gradient-to-r from-blue-600 to-teal-400">
+                                        <button class="px-6 py-2 rounded-lg bg-white">
+                                            <h1 class="px-6 py-2 rounded-lg text-transparent font-semibold bg-clip-text bg-gradient-to-r from-blue-400 to-teal-500">¡Empieza ya!</h1>
                                         </button>
                                     </div>
                                 </div>
@@ -50,11 +51,10 @@ export default function Hero() {
                         <div className="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                             <Canvas camera={{ position: [0, 0, 7] }} className="canvas">
                                 <Suspense fallback={null}>
-                                    <color attach="background" args={['black']} />
+                                    <color attach="background" args={['white']} />
                                     <Float speed={4} rotationIntensity={0.2} floatIntensity={2}>
-                                    <Atom position={[0, 0, 0]} r={2} g={12} b={12} rBall={2} gBall={9} bBall={16} />
+                                    <Atom position={[0, 0, 0]} r={0} g={2}b={10} rBall={10} gBall={10} bBall={10} />
                                     </Float>
-
                                 </Suspense>
                             </Canvas>
                         </div>
