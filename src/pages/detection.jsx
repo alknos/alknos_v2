@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Visualization from './detectionComponent/visualization'
 import axios from "axios";
 import swal from "sweetalert2";
-import Link from "next/link";
 import MainLayout from "Layout/MainLayout";
 
 export default function Detection() {

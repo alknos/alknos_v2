@@ -17,9 +17,9 @@ export default function Verify() {
     let router = useRouter();
 
     const handleSubmit = (event) => {
-
+      
         event.preventDefault();
-
+        
         let token_query = router.query["token"];
         let token_decoded = token_query.replaceAll("%3D", "=").replaceAll("%2F", "/")
         let url_array = token_decoded.split("/");
@@ -33,16 +33,21 @@ export default function Verify() {
         console.log(token);
 
         const formData = new FormData();
-        formData.append("uid", uid);
+        formData.append('uid', uid);
         formData.append("token", token);
 
+        for (const value of formData.values()) {
+          console.log(value);
+        }
+        
         const config = {
             headers: { 'content-type': 'multipart/form-data' }
         }
 
         axios
-            .get(baseURL, formData, config)
+            .post(baseURL, formData, config)
             .then((response) => {
+              
                 console.log(response.data);
                 window.location.href = 'http://localhost:3000/login';
                 new swal({
@@ -59,7 +64,7 @@ export default function Verify() {
             })
             .catch((error) => {
                 console.log(error.response.data);
-
+              
                 new swal({
                     title: "Error",
                     icon: "error",

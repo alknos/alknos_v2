@@ -111,6 +111,7 @@ export default function InorganicCalculator() {
                 });
             });
     };
+    
     return (
 <MainLayout>
 <div className="py-10">

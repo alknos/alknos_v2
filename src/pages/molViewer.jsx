@@ -10,6 +10,6 @@ export default function MolViewer() {
       .then((data) => setHtml(data))
   }, [])
 
-  return <div>{Parser(html)}</div>
+  return ( <div>{Parser(html) }</div> )
 }
 
