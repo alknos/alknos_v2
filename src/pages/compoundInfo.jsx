@@ -4,6 +4,9 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 import swal from "sweetalert2";
+import Navhome from "./navhome";
+import Head from "next/head";
+
 
 function CompoundInfo() {
     const [responseData, setResponseData] = useState([])
@@ -26,7 +29,7 @@ function CompoundInfo() {
                     setResponseData(data);
                     setarrayChem(data.find(item => item.name === "Title").value)
                     setSynonym(Object.values(data.find(item => item.name === "Synonyms").value))
-                    
+
                 })
                 .catch((error) => {
 
@@ -38,15 +41,15 @@ function CompoundInfo() {
     }, [router.query]);
 
     const responseArray = Object.values(responseData);
-    
-    
+
+
     var chemSafDisplayed = false;
     var thumnailDisplayed = false;
 
     const name = "Chemical Safety"
     const name1 = "Synonyms"
     const chemSafInfo = []
-    
+
     for (let i = 0; i < responseData.length; i++) {
         if (responseData[i].name === name) {
             chemSafInfo.push(responseData[i])
@@ -57,12 +60,15 @@ function CompoundInfo() {
     }
 
     return (
-        <MainLayout>
+        <Navhome>
+            <Head>
+                <title>{arrayChem} Information | Alknos</title>
+            </Head>
             <div className="p-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  ">
                 <div className="p-10">
                     <header >
                         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                            <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Información de {arrayChem }</h1>
+                            <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Información de {arrayChem}</h1>
                             <br />
                         </div>
                     </header>
@@ -88,7 +94,7 @@ function CompoundInfo() {
 
                                     if (item.name === "Chemical Safety" && !chemSafDisplayed) {
                                         chemSafDisplayed = true;
-                                       
+
                                         return (
                                             <div
                                                 className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
@@ -134,7 +140,7 @@ function CompoundInfo() {
                                                             <p key={index}>{item}</p>
                                                         ))}
                                                     </div>
-                                                    
+
                                                 </dd>
                                             </div>
                                         );
@@ -193,6 +199,7 @@ function CompoundInfo() {
                             }
                         })}
                     </div>
+
                     {/*  <div className="border-t border-gray-200">
                             {responseArray.map((item, index) => {
                                 if (item.name ==="2D Thumbnail Structure") {
@@ -243,10 +250,8 @@ function CompoundInfo() {
                         return null;
                     }
                 })}
-
-
             </div >
-        </MainLayout>
+        </Navhome>
     )
 }
 

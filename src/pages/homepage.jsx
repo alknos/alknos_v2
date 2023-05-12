@@ -1,15 +1,17 @@
-import MainLayout from "Layout/MainLayout"
+import Head from "next/head"
 import MainPage from "./homepageComponent/mainPage"
-
+import Navhome from "./navhome"
 
 function Homepage() {
-
     return (
-        <MainLayout>
-            <div>
-                <MainPage />
-            </div>
-        </MainLayout>
+
+        <Navhome>
+            <Head>
+                <title>Homepage | Alknos</title>
+            </Head>
+            <MainPage />
+        </Navhome>
+
     )
 }
 

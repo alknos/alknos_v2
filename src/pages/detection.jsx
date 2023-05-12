@@ -3,6 +3,9 @@ import Visualization from './detectionComponent/visualization'
 import axios from "axios";
 import swal from "sweetalert2";
 import MainLayout from "Layout/MainLayout";
+import Navhome from "./navhome";
+import Head from "next/head";
+
 
 export default function Detection() {
 
@@ -11,14 +14,14 @@ export default function Detection() {
     const [common_name, setCommonName] = useState("-");
     const [general_info, setGeneralInfo] = useState("Información General Del Compuesto");
 
-    useEffect(()=>{
+    useEffect(() => {
         requestGet()
     }, [])
 
     //Functions
     const getBase64 = (file) => {
         return new Promise((resolve) => {
-        
+
             let baseURL = "";
             // Make new FileReader
             let reader = new FileReader();
@@ -36,38 +39,38 @@ export default function Detection() {
         });
     };
 
-    const requestGet = async() => {
-               // Store the states in the form data
-               const formData = new FormData();
-               formData.append("base64", "")
-               //Starts inference model
-               axios
-                   .get("http://127.0.0.1:8000/api/v1.0/chem-detection", formData)
-                   .then((response) => {
-                       console.log(response.data);
-                   }).catch((error) => {
-                       if (error.response.data != null) {
-                           console.log(JSON.stringify(error.response.data)
-                           .replaceAll("[", "")
-                           .replaceAll("]", "")
-                           .replaceAll("{", "")
-                           .replaceAll("}", "")
-                           .replaceAll(",", "\n")
-                           .replaceAll('"', ""));
-                           new swal({
-                               title: "Error",
-                               icon: "error",
-                               text: "Ocurrió algo, vuelve a intentarlo"
-                           });
-                       }
-                       else {
-                           new swal({
-                               title: "Error",
-                               icon: "error",
-                               text: "Hubo un error inesperado",
-                           });
-                       }
-                   });
+    const requestGet = async () => {
+        // Store the states in the form data
+        const formData = new FormData();
+        formData.append("base64", "")
+        //Starts inference model
+        axios
+            .get("http://127.0.0.1:8000/api/v1.0/chem-detection", formData)
+            .then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                if (error.response.data != null) {
+                    console.log(JSON.stringify(error.response.data)
+                        .replaceAll("[", "")
+                        .replaceAll("]", "")
+                        .replaceAll("{", "")
+                        .replaceAll("}", "")
+                        .replaceAll(",", "\n")
+                        .replaceAll('"', ""));
+                    new swal({
+                        title: "Error",
+                        icon: "error",
+                        text: "Ocurrió algo, vuelve a intentarlo"
+                    });
+                }
+                else {
+                    new swal({
+                        title: "Error",
+                        icon: "error",
+                        text: "Hubo un error inesperado",
+                    });
+                }
+            });
     }
 
     //Handlers
@@ -98,12 +101,12 @@ export default function Detection() {
                 .catch((error) => {
                     if (error.response.data != null) {
                         console.log(JSON.stringify(error.response.data)
-                        .replaceAll("[", "")
-                        .replaceAll("]", "")
-                        .replaceAll("{", "")
-                        .replaceAll("}", "")
-                        .replaceAll(",", "\n")
-                        .replaceAll('"', ""),)
+                            .replaceAll("[", "")
+                            .replaceAll("]", "")
+                            .replaceAll("{", "")
+                            .replaceAll("}", "")
+                            .replaceAll(",", "\n")
+                            .replaceAll('"', ""),)
                         new swal({
                             title: "Error",
                             icon: "error",
@@ -122,8 +125,10 @@ export default function Detection() {
 
 
     return (
-        <>
-            <MainLayout>
+        <Navhome>
+            <Head>
+                <title>Compound Detection | Alknos</title>
+            </Head>
             <div className="p-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  ">
                 <header>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -144,7 +149,7 @@ export default function Detection() {
 
                     <dl className="grid grid-cols-1 gap-5 mt-5 sm:grid-cols-6">
                         <div className="px-4 py-5 overflow-hidden bg-white rounded-lg sm:p-6">
-                        
+
                         </div>
                         <div className="px-4 py-5 overflow-hidden bg-white rounded-lg sm:p-6">
 
@@ -204,7 +209,6 @@ export default function Detection() {
                     </div>
                 </div>
             </div>
-            </MainLayout>
-        </>
+        </Navhome>
     )
 }

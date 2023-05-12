@@ -5,6 +5,9 @@ import axios from "axios";
 
 import Card from "./compoundComponent/card";
 import Link from "next/link";
+import Navhome from "./navhome";
+import Head from "next/head";
+
 
 function SearchCompound() {
 
@@ -22,7 +25,7 @@ function SearchCompound() {
             "query", query
         );
         event.preventDefault();
-        
+
 
         axios
             .post("http://127.0.0.1:8000/api/v1.0/compound-query", formData)
@@ -31,15 +34,16 @@ function SearchCompound() {
                 setReceivedResponse(true);
                 setResponseData(data);
                 console.log(data)
-
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 
             });
     };
 
     return (
-        <MainLayout>
+        <Navhome>
+            <Head>
+                <title>Compound Search | Alknos</title>
+            </Head>
             <main className="flex-1 pb-8">
                 <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                     <div className="text-center">
@@ -75,20 +79,19 @@ function SearchCompound() {
                     </div>
                     {receivedResponse && (
                         <div>
-                        
-                        {responseData.map((compound) => (
-                          <div key={compound.cid} className=" p-4 mb-4">
-                            <Link href={`/compoundInfo?cid=${compound.cid}`}>
-                            <Card data={compound} />
-                            </Link>
-                          </div>
-                        ))}
-                      </div>
+
+                            {responseData.map((compound) => (
+                                <div key={compound.cid} className=" p-4 mb-4">
+                                    <Link href={`/compoundInfo?cid=${compound.cid}`}>
+                                        <Card data={compound} />
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
-
             </main >
-        </MainLayout>
+        </Navhome>
     )
 }
 
