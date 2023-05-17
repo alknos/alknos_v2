@@ -9,9 +9,9 @@ import swal from "sweetalert2";
 import { AuthLayout } from './loginRegisterComponent/AuthLayout'
 import { Button } from './loginRegisterComponent/Button'
 import { TextField } from './loginRegisterComponent/Fields'
-import { Logo } from './loginRegisterComponent/Logo'
 
 export default function Login() {
+
   const [formValue, setformValue] = React.useState({
     username: "",
     password: "",
@@ -25,6 +25,7 @@ export default function Login() {
   };
 
   const baseURL = "http://127.0.0.1:8000/api/v1.0/login";
+  const URL = "http://127.0.0.1:8000/api/v1.0/get-details";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,14 +37,27 @@ export default function Login() {
     axios
       .post(baseURL, loginFormData)
       .then((response) => {
-        console.log(response.data);
-
         const cookies = new Cookies();
         cookies.set("token", response.data.token, { path: "/" })
-        cookies.set("username",formValue.username,{path:"/"});
+        cookies.set("username", formValue.username, { path: "/" });
+
+        const config = {
+          headers: {
+            Authorization: `Token ${response.data.token}`,
+          },
+        };
+
+        axios.all([
+          axios.get(URL, config)
+        ]).then(axios.spread((userDetailsResponse) => {
+          var a = userDetailsResponse.data.first_name + " " + userDetailsResponse.data.last_name
+          console.log(userDetailsResponse.data.first_name + " " + userDetailsResponse.data.last_name)
+          cookies.set("complete_name", userDetailsResponse.data.first_name + " " + userDetailsResponse.data.last_name, { path: "/" });
+        })).catch((error) => {
+          console.error(error);
+        });
 
         window.location.href = 'http://localhost:3000/homepage';
-        //window.location.reload(false);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -58,11 +72,10 @@ export default function Login() {
             .replaceAll("}", "")
             .replaceAll(",", "\n")
             .replaceAll('"', "")
-            .replaceAll('non_field_errors:Unable to log in with provided credentials.','El usuario que ingresaste no existe o la contraseña es incorrecta, prueba de nuevo.'),
+            .replaceAll('non_field_errors:Unable to log in with provided credentials.', 'El usuario que ingresaste no existe o la contraseña es incorrecta, prueba de nuevo.'),
         });
       });
   };
-
 
   return (
     <div className='bg-white h-full'>
@@ -72,7 +85,7 @@ export default function Login() {
       <AuthLayout>
         <div className="flex flex-col">
           <Link href="/" aria-label="Home">
-            
+
           </Link>
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">
@@ -111,14 +124,14 @@ export default function Login() {
             autoComplete="current-password"
             required
           />
-                          <div className="text-sm">
-                  <Link
-                    href="/passwordResetMail"
-                    className="font-medium text-blue-600 hover:text-blue-400 duration-300"
-                  >
-                    ¿Olvidaste tu contraseña?
-                  </Link>
-                </div>
+          <div className="text-sm">
+            <Link
+              href="/passwordResetMail"
+              className="font-medium text-blue-600 hover:text-blue-400 duration-300"
+            >
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
           <div>
             <Button
               type="submit"

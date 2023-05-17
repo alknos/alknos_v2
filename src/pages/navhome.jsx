@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -10,32 +10,33 @@ import {
   ScaleIcon,
   MagnifyingGlassIcon,
   XMarkIcon,
+  CalculatorIcon,
+  ArrowsRightLeftIcon,
+  ViewfinderCircleIcon,
+  Battery50Icon,
+  BoltIcon,
+  SignalIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Cookies from 'universal-cookie'
+import Image from 'next/image'
+import user_profile from './homepageComponent/user_profile.jpg'
 
-const navigation = [
-  { name: 'Inicio', href: '/homepage', icon: HomeIcon, current: true },
-  { name: 'Búsqueda', href: '/searchCompound', icon: MagnifyingGlassIcon, current: false },
-  { name: 'Calculadora', href: '/sty-calculator', icon: ClockIcon, current: false },
-  { name: 'Detección', href: '/detection', icon: ScaleIcon, current: false },
-  { name: 'Reacciones', href: '/inorganic-calculator', icon: CreditCardIcon, current: false },
-]
-
-const secondaryNavigation = [
-  { name: 'Ajustes', href: '#', icon: CogIcon },
-  { name: 'Ayuda', href: '#', icon: QuestionMarkCircleIcon },
-]
 
 function NavigationDesktop() {
   const router = useRouter()
   const navigation = [
     { name: 'Inicio', href: '/homepage', icon: HomeIcon, current: router.pathname === '/homepage' },
     { name: 'Búsqueda', href: '/searchCompound', icon: MagnifyingGlassIcon, current: router.pathname === '/searchCompound' },
-    { name: 'Calculadora', href: '/sty-calculator', icon: ClockIcon, current: router.pathname === '/sty-calculator' },
-    { name: 'Detección', href: '/detection', icon: ScaleIcon, current: router.pathname === '/detection' },
-    { name: 'Reacciones', href: '/inorganic-calculator', icon: CreditCardIcon, current: router.pathname === '/inorganic-calculator' },
+    { name: 'Estequiometría', href: '/sty-calculator', icon: CalculatorIcon, current: router.pathname === '/sty-calculator' },
+    { name: 'Detección', href: '/detection', icon: ViewfinderCircleIcon, current: router.pathname === '/detection' },
+    { name: 'Reacciones', href: '/inorganic-calculator', icon: ArrowsRightLeftIcon, current: router.pathname === '/inorganic-calculator' },
+    { name: 'Celdas Galvánicas', href: '/galvanicCells', icon: Battery50Icon, current: router.pathname === '/galvanicCells' },
+    { name: 'Electrólisis', href: '/electrolisis', icon: BoltIcon, current: router.pathname === '/electrolisis' },
+    { name: 'Ondas', href: '/waves', icon: SignalIcon, current: router.pathname === '/waves' },
   ]
+
 
   return (
     <nav className="mt-5 flex-1 space-y-1 px-2">
@@ -67,9 +68,12 @@ function NavigationMobile() {
   const navigation = [
     { name: 'Inicio', href: '/homepage', icon: HomeIcon, current: router.pathname === '/homepage' },
     { name: 'Búsqueda', href: '/searchCompound', icon: MagnifyingGlassIcon, current: router.pathname === '/searchCompound' },
-    { name: 'Calculadora', href: '/sty-calculator', icon: ClockIcon, current: router.pathname === '/sty-calculator' },
-    { name: 'Detección', href: '/detection', icon: ScaleIcon, current: router.pathname === '/detection' },
-    { name: 'Reacciones', href: '/inorganic-calculator', icon: CreditCardIcon, current: router.pathname === '/inorganic-calculator' },
+    { name: 'Estequiometría', href: '/sty-calculator', icon: CalculatorIcon, current: router.pathname === '/sty-calculator' },
+    { name: 'Detección', href: '/detection', icon: ViewfinderCircleIcon, current: router.pathname === '/detection' },
+    { name: 'Reacciones', href: '/inorganic-calculator', icon: ArrowsRightLeftIcon, current: router.pathname === '/inorganic-calculator' },
+    { name: 'Celdas Galvánicas', href: '/galvanicCells', icon: Battery50Icon, current: router.pathname === '/galvanicCells' },
+    { name: 'Electrólisis', href: '/electrolisis', icon: BoltIcon, current: router.pathname === '/electrolisis' },
+    { name: 'Ondas', href: '/waves', icon: SignalIcon, current: router.pathname === '/waves' },
   ]
 
   return (
@@ -99,12 +103,30 @@ function NavigationMobile() {
   )
 }
 
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 function Navhome(props) {
+  const [username, setUsername] = useState('');
+  const [completeName, setCompleteName] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    setUsername(cookies.get('username'));
+    setCompleteName(cookies.get('complete_name'));
+  }, []);
+
+  const handleLogout = () => {
+    const cookies = new Cookies();
+    cookies.remove('username')
+    cookies.remove('complete_name')
+    cookies.remove('token')
+    window.location.href = 'http://localhost:3000/';
+  };
 
   return (
     <>
@@ -170,19 +192,28 @@ function Navhome(props) {
                     <Link href="#" className="group block flex-shrink-0">
                       <div className="flex items-center">
                         <div>
-                          <img
+                          <Image
                             className="inline-block h-10 w-10 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            src={user_profile}
                             alt=""
+                            unoptimized
                           />
                         </div>
                         <div className="ml-3">
-                          <p className="text-base font-medium text-white">Tom Cook</p>
-                          <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">View profile</p>
+                          <p className="text-base font-medium text-white">{completeName}</p>
+                          <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">{username}</p>
                         </div>
                       </div>
                     </Link>
+
                   </div>
+                  <div className="p-4 bg-gray-700">
+                <button
+                  className="bg-green-500 hover:bg-green-700 duration-300 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+              </div>
                 </Dialog.Panel>
               </Transition.Child>
               <div className="w-14 flex-shrink-0">{/* Force sidebar to shrink to fit close icon */}</div>
@@ -210,21 +241,31 @@ function Navhome(props) {
               <a href="#" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
                   <div>
-                    <img
+                    <Image
                       className="inline-block h-9 w-9 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={user_profile}
                       alt=""
+                      unoptimized
                     />
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">View profile</p>
+                    <p className="text-sm font-medium text-white">{completeName}</p>
+                    <p className="text-sm font-medium text-gray-400">{username}</p>
                   </div>
                 </div>
               </a>
             </div>
+            <div className="p-4 bg-gray-700">
+                <button
+                  className="bg-green-500 hover:bg-green-700 duration-300 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleLogout}>
+                  Cerrar sesión
+                </button>
+              </div>
           </div>
+          
         </div>
+
         <div className="flex flex-1 flex-col md:pl-64">
           <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button

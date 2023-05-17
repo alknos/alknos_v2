@@ -15,6 +15,8 @@ const compound = [
 
 ]
 
+
+
 export default function VerifyBalance() {
     const [compoundArray, setCompoundArray] = useState([''])
     const [reactives, setReactives] = useState(['']);
@@ -34,12 +36,21 @@ export default function VerifyBalance() {
         quantity: "",
         position: ""
     });
+    const [formReagent, setformReagent] = React.useState({
+        reaction: "",
+        unit: "",
+        reactive1: "",
+        reactive2: ""
+    });
     const [compound, setCompound] = React.useState([]); // Define state para los compuestos
-    const [stoichiometry_data, setStoichiometryData] = useState('')
+    const [stoichiometry_data, setStoichiometryData] = useState([])
     const [all_compounds, setall_compounds] = useState([''])
     const [reactionUser, setReactionUser] = useState([''])
+    const [reactiveArray, setReactiveArray] = useState('')
+    const [limitingReagent, setlimitingReagent] = useState('')
+    const firstreactiveArray = [
 
-
+    ]
 
     const handleChange = (event) => {
         setformValue({
@@ -118,12 +129,15 @@ export default function VerifyBalance() {
                 }
                 reactionString += reactive;
                 compound.push({ name: reactive.replace(/[^\w\s]/gi, "") })
+                firstreactiveArray.push({ name: reactive.replace(/[^\w\s]/gi, "") })
+
             }
         });
 
         // Verificar si hay reactivos y productos para agregar la flecha
         if (reactionString && products.length > 0) {
             reactionString += ' --> ';
+            setReactiveArray(firstreactiveArray)
         }
 
         // Agregar los productos
@@ -197,6 +211,44 @@ export default function VerifyBalance() {
                 console.log(data);
                 setStoichiometryData(data)
                 console.log(stoichiometry_data)
+            }).catch((error) => {
+                if (error.response.data != null) {
+                    console.log(JSON.stringify(error.response.data)
+                        .replaceAll("[", "")
+                        .replaceAll("]", "")
+                        .replaceAll("{", "")
+                        .replaceAll("}", "")
+                        .replaceAll(",", "\n")
+                        .replaceAll('"', ""));
+                    new swal({
+                        title: "Error",
+                        icon: "error",
+                        text: "Ocurrió algo, vuelve a intentarlo"
+                    });
+                }
+                else {
+                    new swal({
+                        title: "Error",
+                        icon: "error",
+                        text: "Hubo un error inesperado",
+                    });
+                }
+            });
+    };
+
+    const calculateReagent = (event) => {
+        event.preventDefault();
+
+        const formDataReagent = new FormData(event.target);
+
+
+        formDataReagent.append("reaction", reactionUser)
+
+        axios
+            .post("http://127.0.0.1:8000/api/v1.0/calculate-reactant", formDataReagent)
+            .then((response) => {
+                let data = response.data;
+                setlimitingReagent("Reactivo Limitante: " + data.limiting_reagent)
             }).catch((error) => {
                 if (error.response.data != null) {
                     console.log(JSON.stringify(error.response.data)
@@ -308,138 +360,240 @@ export default function VerifyBalance() {
                 </div>
             </main>
 
-            <main id="stoichiometry" className="p-10" >
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <header>
-                        <h1 className="text-xl font-semibold leading-tight tracking-tight text-gray-900">Datos Estequiométricos</h1>
-                    </header>
-                    <form
-                        id="stoichiometry"
-                        onSubmit={calculateSt}
-                        className="p-5"
-                    >
-                        <p className="text-xl font-extralight leading-tight tracking-tight text-gray-900">
-                            {reaction}
-                        </p>
-                        <fieldset>
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
-                                        Compuesto
-                                    </dt>
-                                    <select
-                                        id="position"
-                                        name="position"
-                                        className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                        defaultValue=""
-                                        onChange={handleChange}
-                                    >
-                                        {compound.map((item, index) => (
-                                            <option key={index} value={index + 1}>
-                                                {item.name}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+            {setStoichiometryData.length > 0 && (
+                <main id="stoichiometry" className="p-10" >
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <header>
+                            <h1 className="text-xl font-semibold leading-tight tracking-tight text-gray-900">Datos Estequiométricos</h1>
+                        </header>
+                        <form
+                            id="stoichiometry"
+                            onSubmit={calculateSt}
+                            className="p-5"
+                        >
+                            <p className="text-xl font-extralight leading-tight tracking-tight text-gray-900">
+                                {reaction}
+                            </p>
+                            <fieldset>
+                                <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                        <dt className="truncate text-sm font-medium text-gray-500">
+                                            Compuesto
+                                        </dt>
+                                        <select
+                                            id="position"
+                                            name="position"
+                                            className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                            defaultValue=""
+                                            onChange={handleChange}
+                                        >
+                                            {compound.map((item, index) => (
+                                                <option key={index} value={index + 1}>
+                                                    {item.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
 
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
-                                        Cantidad
-                                    </dt>
-                                    <input
-                                        type="number"
-                                        name="quantity"
-                                        id="quantity"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
-                                        placeholder="3256"
-                                        required
-                                        value={formStoichiometry.value}
-                                        onChange={handleChange}
-                                    />
-                                </div>
+                                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                        <dt className="truncate text-sm font-medium text-gray-500">
+                                            Cantidad
+                                        </dt>
+                                        <input
+                                            type="number"
+                                            name="quantity"
+                                            id="quantity"
+                                            min="0"
+                                            step="0.01"
+                                            className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                            placeholder="3256"
+                                            required
+                                            value={formStoichiometry.value}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
 
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
-                                        Unidades
-                                    </dt>
-                                    <select
-                                        id="unit"
-                                        name="unit"
-                                        className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                        defaultValue="Mol"
-                                        onChange={handleChange}
+                                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                        <dt className="truncate text-sm font-medium text-gray-500">
+                                            Unidades
+                                        </dt>
+                                        <select
+                                            id="unit"
+                                            name="unit"
+                                            className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                            defaultValue="Mol"
+                                            onChange={handleChange}
+                                        >
+                                            {units.map((uni) => (
+                                                <option key={uni.id} value={uni.unit}>
+                                                    {uni.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </dl>
+                            </fieldset>
+                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-6">
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg justify-end bg-white px-5 py-8 sm:p-6">
+                                    <button
+                                        type="submit"
+                                        className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                                     >
-                                        {units.map((uni) => (
-                                            <option key={uni.id} value={uni.unit}>
-                                                {uni.name}
-                                            </option>
-                                        ))}
-                                    </select>
+                                        Calcular
+                                        <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+                                    </button>
                                 </div>
                             </dl>
-                        </fieldset>
-                        <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-6">
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
-                            <div className="overflow-hidden rounded-lg justify-end bg-white px-5 py-8 sm:p-6">
-                                <button
-                                    type="submit"
-                                    className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                                >
-                                    Calcular
-                                    <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
-                                </button>
-                            </div>
-                        </dl>
-                    </form>
+                        </form>
 
-                    {stoichiometry_data.length > 0 && (
-                        <div className="container mx-auto">
-                            <h1 className="text-2xl font-bold mb-4">Datos Estequiométricos de la reacción</h1>
-                            <table className="min-w-full bg-white">
-                                <thead>
-                                    <tr>
-                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                            Compuesto
-                                        </th>
-                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                            Gramos
-                                        </th>
-                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                            Moles
-                                        </th>
-                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                            Moleculas
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {stoichiometry_data.map((item, index) => (
-                                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                                                {all_compounds[index].compound}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                                                {item.grams}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                                                {item.moles}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                                                {item.molecules}
-                                            </td>
+                        {stoichiometry_data.length > 0 && (
+                            <div className="container mx-auto">
+                                <h1 className="text-2xl font-bold mb-4">Datos Estequiométricos de la reacción</h1>
+                                <table className="min-w-full bg-white">
+                                    <thead>
+                                        <tr>
+                                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                                                Compuesto
+                                            </th>
+                                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                                                Gramos
+                                            </th>
+                                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                                                Moles
+                                            </th>
+                                            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">
+                                                Moleculas
+                                            </th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    )}
+                                    </thead>
+                                    <tbody>
+                                        {stoichiometry_data.map((item, index) => (
+                                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                                    {all_compounds[index].compound}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                                    {item.grams.toFixed(2)}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                                    {item.moles.toFixed(2)}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                                    {item.molecules.toFixed(2)}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
 
-                </div>
-            </main>
+                    </div>
+                </main>)}
+
+            {reactiveArray.length > 0 && (
+                <main id="reagent" className="p-10" >
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <header>
+                            <h1 className="text-xl font-semibold leading-tight tracking-tight text-gray-900">Reactivo Limitante</h1>
+                        </header>
+                        <form
+                            id="reagent"
+                            onSubmit={calculateReagent}
+                            className="p-5">
+                            <fieldset>
+                                <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+                                    {reactiveArray.length > 0 && reactiveArray.map((item, index) => (
+                                        <>
+                                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                                <dt className="truncate text-sm font-medium text-gray-500">
+                                                    Reactivo {index + 1}
+                                                </dt>
+                                                <input
+                                                    type="text"
+                                                    name={`Reagent${index + 1}`}
+                                                    id={`Reagent${index + 1}`}
+                                                    className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                                    disabled
+                                                    required
+                                                    value={item.name}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+
+                                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                                <dt className="truncate text-sm font-medium text-gray-500">
+                                                    Cantidad
+                                                </dt>
+                                                <input
+                                                    type="number"
+                                                    name={`reagent${index + 1}`}
+                                                    id={`reagent${index + 1}`}
+                                                    className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                                    placeholder="3256"
+                                                    required
+                                                    min="0"
+                                                    step="0.01"
+                                                    value={formReagent.value}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+
+
+                                        </>
+                                    ))}
+                                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                        <dt className="truncate text-sm font-medium text-gray-500">
+                                            Unidades
+                                        </dt>
+                                        <select
+                                            id="unit"
+                                            name="unit"
+                                            className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                            defaultValue="Mol"
+                                            onChange={handleChange}
+                                        >
+                                            {units.map((uni) => (
+                                                <option key={uni.id} value={uni.unit}>
+                                                    {uni.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </dl>
+                            </fieldset>
+                            <div className="p-5">
+                                <h1 className="text-xl font-semibold leading-tight tracking-tight text-gray-900">{limitingReagent}</h1>
+                            </div>
+                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-6">
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5  sm:p-6"></div>
+                                <div className="overflow-hidden rounded-lg justify-end bg-white px-5 py-8 sm:p-6">
+                                    <button
+                                        type="submit"
+                                        className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                                    >
+                                        Calcular
+                                        <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+                                    </button>
+                                </div>
+                            </dl>
+                        </form>
+
+
+
+                    </div>
+                </main>
+            )}
 
         </>
     )

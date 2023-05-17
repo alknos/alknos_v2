@@ -1,5 +1,5 @@
 import MainLayout from "Layout/MainLayout"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import axios from "axios";
 
@@ -10,34 +10,38 @@ import Head from "next/head";
 
 
 function SearchCompound() {
-
     const [query, setSearchText] = useState('');
-    const [receivedResponse, setReceivedResponse] = useState(false);
-    const [responseData, setResponseData] = useState([])
+    const [responseData, setResponseData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const handleChange = (event) => {
         setSearchText(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        const formData = new FormData();
-        formData.append(
-            "query", query
-        );
-        event.preventDefault();
-
-
-        axios
-            .post("http://127.0.0.1:8000/api/v1.0/compound-query", formData)
-            .then((response) => {
-                let data = response.data;
-                setReceivedResponse(true);
-                setResponseData(data);
-                console.log(data)
-            }).catch((error) => {
-                
-            });
+    const fetchData = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('query', query);
+            const response = await axios.post('http://127.0.0.1:8000/api/v1.0/compound-query', formData);
+            setResponseData(response.data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            setResponseData([]);
+            console.error(error);
+        }
     };
+
+    useEffect(() => {
+        fetchData(); // Llamar a fetchData al cargar el componente
+    }, [query]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        await fetchData();
+    };
+
 
     return (
         <Navhome>
@@ -77,18 +81,46 @@ function SearchCompound() {
                             </button>
                         </div>
                     </div>
-                    {receivedResponse && (
-                        <div>
 
-                            {responseData.map((compound) => (
-                                <div key={compound.cid} className=" p-4 mb-4">
-                                    <Link href={`/compoundInfo?cid=${compound.cid}`}>
-                                        <Card data={compound} />
-                                    </Link>
+
+                    {Array.isArray(responseData) ? (
+                        responseData.length === 0 ? (
+                            <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl">
+                                <div className="md:flex">
+                                    <p className="mx-auto mt-5 max-w-xl text-xl text-gray-500">
+                                        No se encontraron resultados.
+                                    </p>
                                 </div>
-                            ))}
+                            </div>
+                        ) : (
+                            <div>
+                                {responseData.map((compound) => (
+                                    <div key={compound.cid} className="p-4 mb-4">
+                                        <Link href={`/compoundInfo?cid=${compound.cid}`}>
+                                            <Card data={compound} />
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        )
+                    ) : (
+
+                        <div className="max-w-md mx-auto bg-white rounded-xl overflow-hidden md:max-w-2xl">
+                            <div className="md:flex">
+                                <div className="w-1/3 bg-gray-200 h-40 animate-pulse" />
+                                <div className="p-8">
+                                    <div className="w-1/2 h-6 bg-gray-200 mb-4 animate-pulse" />
+                                    <div className="w-full h-6 bg-gray-200 mb-4 animate-pulse" />
+                                    <div className="w-full h-6 bg-gray-200 mb-4 animate-pulse" />
+                                    <div className="w-full h-6 bg-gray-200 mb-4 animate-pulse" />
+                                </div>
+                            </div>
                         </div>
+
+
+
                     )}
+
                 </div>
             </main >
         </Navhome>
