@@ -9,54 +9,59 @@ import { FaWaveSquare, FaBolt, FaSignal } from 'react-icons/fa';
 
 export default function GalvanicCells() {
 
-    const [waveProperties, setWaveProperties] = useState(null)
-    const [formFrecuency, setFormFrecuency] = useState({
+    const [acidity, setAcidity] = useState(null)
+    const [formAcidityPH, setFormAcidityPH] = useState({
+        value: "",
+    });
+    const [formAcidityPOH, setFormAcidityPOH] = useState({
         value: "",
         power: ""
     });
-    const [formWavelength, setFormWavelength] = useState({
+    const [formAcidityH, setFormAcidityH] = useState({
         value: "",
         power: ""
     });
-    const [formEnergy, setFormEnergy] = useState({
+    const [formAcidityOH, setFormAcidityOH] = useState({
         value: "",
         power: ""
     });
 
-    const handleFrecuencyChange = (event) => {
-        setFormFrecuency({
-            ...formFrecuency,
+    const handlePHChange = (event) => {
+        setFormAcidityPH({
+            ...formAcidityPH,
+            [event.target.name]: event.target.value,
+        });
+    };
+    const handlePOHChange = (event) => {
+        setFormAcidityPOH({
+            ...formAcidityPOH,
+            [event.target.name]: event.target.value,
+        });
+    };
+    const handleHChange = (event) => {
+        setFormAcidityH({
+            ...formAcidityH,
+            [event.target.name]: event.target.value,
+        });
+    };
+    const handleOHChange = (event) => {
+        setFormAcidityOH({
+            ...formAcidityOH,
             [event.target.name]: event.target.value,
         });
     };
 
-    const handleWavelengthChange = (event) => {
-        setFormWavelength({
-            ...formWavelength,
-            [event.target.name]: event.target.value,
-        });
-    };
-
-    const handleEnergyChange = (event) => {
-        setFormEnergy({
-            ...formEnergy,
-            [event.target.name]: event.target.value,
-        });
-    };
-
-    const calculateWavelength = (event) => {
+    const calculateAcidity = (event) => {
         event.preventDefault();
 
-        const formWavelength = new FormData(event.target);
-        formWavelength.append('property', 'wavelength')
+        const formData = new FormData(event.target);
 
         axios
-            .post("http://127.0.0.1:8000/api/v1.0/electromagnetic-wave", formWavelength)
+            .post("http://127.0.0.1:8000/api/v1.0/acidity-calculation", formData)
             .then((response) => {
                 let data = response.data;
-                console.log(data)
-                setWaveProperties(data)
-
+                setAcidity(data)
+                console.log(acidity)
             }).catch((error) => {
                 if (error.response.data != null) {
                     console.log(JSON.stringify(error.response.data)
@@ -82,100 +87,27 @@ export default function GalvanicCells() {
             });
     };
 
-    const calculateEnergy = (event) => {
-        event.preventDefault();
-
-        const formEnergy = new FormData(event.target);
-        formEnergy.append('property', 'energy')
-
-        axios
-            .post("http://127.0.0.1:8000/api/v1.0/electromagnetic-wave", formEnergy)
-            .then((response) => {
-                let data = response.data;
-                setWaveProperties(data)
-                console.log(waveProperties)
-            }).catch((error) => {
-                if (error.response.data != null) {
-                    console.log(JSON.stringify(error.response.data)
-                        .replaceAll("[", "")
-                        .replaceAll("]", "")
-                        .replaceAll("{", "")
-                        .replaceAll("}", "")
-                        .replaceAll(",", "\n")
-                        .replaceAll('"', ""));
-                    new swal({
-                        title: "Error",
-                        icon: "error",
-                        text: "Ocurrió algo, vuelve a intentarlo"
-                    });
-                }
-                else {
-                    new swal({
-                        title: "Error",
-                        icon: "error",
-                        text: "Hubo un error inesperado",
-                    });
-                }
-            });
-    };
-
-    const calculateFrequency = (event) => {
-        event.preventDefault();
-
-        const formFrecuency = new FormData(event.target);
-        formFrecuency.append('property', 'frequency')
-
-        axios
-            .post("http://127.0.0.1:8000/api/v1.0/electromagnetic-wave", formFrecuency)
-            .then((response) => {
-                let data = response.data;
-                setWaveProperties(data)
-                console.log(waveProperties !== null)
-            }).catch((error) => {
-                if (error.response.data != null) {
-                    console.log(JSON.stringify(error.response.data)
-                        .replaceAll("[", "")
-                        .replaceAll("]", "")
-                        .replaceAll("{", "")
-                        .replaceAll("}", "")
-                        .replaceAll(",", "\n")
-                        .replaceAll('"', ""));
-                    new swal({
-                        title: "Error",
-                        icon: "error",
-                        text: "Ocurrió algo, vuelve a intentarlo"
-                    });
-                }
-                else {
-                    new swal({
-                        title: "Error",
-                        icon: "error",
-                        text: "Hubo un error inesperado",
-                    });
-                }
-            });
-    };
 
     return (
         <Navhome>
             <Head>
-                <title>Waves | Alknos</title>
+                <title>Acidity | Alknos</title>
             </Head>
-            <main id="galvanicCell" className="p-10" >
+            <main id="Acidity" className="p-10" >
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <header>
-                        <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Ondas Electromagnéticas</h1>
+                        <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Calculadora de Acidez</h1>
                     </header>
 
                     <form
-                        id="frequency"
-                        onSubmit={calculateFrequency}
+                        id="pH"
+                        onSubmit={calculateAcidity}
                         className="p-5">
                         <fieldset className="px-48">
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                                 <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                     <dt className="truncate text-sm font-medium text-gray-500">
-                                        Frecuencia de la onda (Hz)
+                                        Potencial Hidrógeno (pH)
                                     </dt>
                                     <input
                                         type="number"
@@ -183,31 +115,17 @@ export default function GalvanicCells() {
                                         id="value"
                                         className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
                                         placeholder="7.2"
-                                        onChange={handleFrecuencyChange}
-                                        value={formFrecuency.value}
-                                        min={"1"}
+                                        min={"0"}
+                                        max={"14"}
+                                        onChange={handlePHChange}
+                                        value={formAcidityPH.value}
                                         required />
-                                </div>
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
-                                        Potencia de la magnitud
-                                    </dt>
-                                    <input
-                                        type="number"
-                                        name="power"
-                                        id="power"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
-                                        placeholder="7"
-                                        onChange={handleFrecuencyChange}
-                                        value={formFrecuency.power}
-                                        min={"1"}
-                                        step={"1"}
-                                        required />
+                                    <input type="hidden" name="property" id="property" value="pH" />
                                 </div>
                                 <button
                                     type="submit"
                                     className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                                    Calcular onda electromagnética con frecuencia
+                                    Calcular acidez con Potencial Hidrógeno (pH)
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
                             </dl>
@@ -215,14 +133,14 @@ export default function GalvanicCells() {
                     </form>
 
                     <form
-                        id="wavelength"
-                        onSubmit={calculateWavelength}
+                        id="pOH"
+                        onSubmit={calculateAcidity}
                         className="p-5">
                         <fieldset className="px-48">
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                                 <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                     <dt className="truncate text-sm font-medium text-gray-500">
-                                        Longitud de la onda  (m)
+                                        Potencial Aniones Hidroxilo (pOH)
                                     </dt>
                                     <input
                                         type="number"
@@ -230,31 +148,16 @@ export default function GalvanicCells() {
                                         id="value"
                                         className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
                                         placeholder="3"
-                                        onChange={handleWavelengthChange}
-                                        value={formWavelength.value}
+                                        onChange={handlePOHChange}
+                                        value={formAcidityPOH.value}
                                         min={"1"}
                                         required />
-                                </div>
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
-                                        Potencia de la magnitud
-                                    </dt>
-                                    <input
-                                        type="number"
-                                        name="power"
-                                        id="power"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
-                                        placeholder="7"
-                                        step={"1"}
-                                        onChange={handleWavelengthChange}
-                                        value={formWavelength.power}
-                                        min={"1"}
-                                        required />
+                                    <input type="hidden" name="property" id="property" value="pOH" />
                                 </div>
                                 <button
                                     type="submit"
                                     className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                    Calcular onda electromagnética con su longitud de onda
+                                    Calcular acidez con Potencial Aniones Hidroxilo (pOH)
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
                             </dl>
@@ -262,14 +165,14 @@ export default function GalvanicCells() {
                     </form>
 
                     <form
-                        id="energy"
-                        onSubmit={calculateEnergy}
+                        id="H"
+                        onSubmit={calculateAcidity}
                         className="p-5">
                         <fieldset className="px-48">
                             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                                 <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                     <dt className="truncate text-sm font-medium text-gray-500">
-                                        Energía de la onda (J)
+                                        Ión de Hidrógeno [H+]
                                     </dt>
                                     <input
                                         type="number"
@@ -277,10 +180,10 @@ export default function GalvanicCells() {
                                         id="value"
                                         className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
                                         placeholder="2"
-                                        min={"1"}
-                                        onChange={handleEnergyChange}
-                                        value={formEnergy.value}
+                                        onChange={handleHChange}
+                                        value={formAcidityH.value}
                                         required />
+                                    <input type="hidden" name="property" id="property" value="H" />
                                 </div>
                                 <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                     <dt className="truncate text-sm font-medium text-gray-500">
@@ -292,8 +195,8 @@ export default function GalvanicCells() {
                                         id="power"
                                         className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
                                         placeholder="7"
-                                        onChange={handleEnergyChange}
-                                        value={formEnergy.power}
+                                        onChange={handleHChange}
+                                        value={formAcidityH.power}
                                         step={"1"}
                                         min={"1"}
                                         required />
@@ -301,43 +204,84 @@ export default function GalvanicCells() {
                                 <button
                                     type="submit"
                                     className="inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
-                                    Calcular onda electromagnética con su energía
+                                    Calcular acidez con Ión de Hidrógeno [H+]
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
                             </dl>
                         </fieldset>
                     </form>
 
-                    {waveProperties !== null && (
+                    <form
+                        id="OH"
+                        onSubmit={calculateAcidity}
+                        className="p-5">
+                        <fieldset className="px-48">
+                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                    <dt className="truncate text-sm font-medium text-gray-500">
+                                        Anión de Hidróxilo [OH-]
+                                    </dt>
+                                    <input
+                                        type="number"
+                                        name="value"
+                                        id="value"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        placeholder="2"
+                                        onChange={handleOHChange}
+                                        value={formAcidityOH.value}
+                                        required />
+                                    <input type="hidden" name="property" id="property" value="H" />
+                                </div>
+                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                    <dt className="truncate text-sm font-medium text-gray-500">
+                                        Potencia de la magnitud
+                                    </dt>
+                                    <input
+                                        type="number"
+                                        name="power"
+                                        id="power"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        placeholder="7"
+                                        onChange={handleOHChange}
+                                        value={formAcidityOH.power}
+                                        step={"1"}
+                                        min={"1"}
+                                        required />
+                                    <input type="hidden" name="property" id="property" value="OH" />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="inline-flex items-center rounded-md border border-transparent bg-amber-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+                                    Calcular acidez con Ión de Hidrógeno [H+]
+                                    <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+                                </button>
+                            </dl>
+                        </fieldset>
+                    </form>
+
+
+
+                    {acidity !== null && (
                         <>
                             <div className="p-16 flex justify-center">
-                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900">Datos de la Ondas Electromagnéticas</h1>
+                                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900">Propiedades de Acidez</h1>
                             </div>
                             <div className="flex justify-center">
-                                <div className="w-full max-w-md bg-white shadow-md rounded-lg overflow-hidden">
-                                    <table className="w-full">
+                                <div className="max-w-md bg-white shadow-md rounded-lg overflow-hidden">
+                                    <table className="min-w-full">
                                         <thead>
                                             <tr>
-                                                <th className="py-2 px-4 bg-blue-500 text-white text-left">
-                                                    <FaWaveSquare className="inline-block mr-2" />
-                                                    Wavelength
-                                                </th>
-                                                <th className="py-2 px-4 bg-green-500 text-white text-left">
-                                                    <FaSignal className="inline-block mr-2" />
-                                                    Frequency
-                                                </th>
-                                                <th className="py-2 px-4 bg-yellow-500 text-white text-left">
-                                                    <FaBolt className="inline-block mr-2" />
-                                                    Energy
-                                                </th>
+                                                <th className="py-2 px-4 bg-teal-500 text-white">Propiedad</th>
+                                                <th className="py-2 px-4 bg-teal-500 text-white">Valor</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td className="py-2 px-4  text-black text-left">{waveProperties.wavelength} m</td>
-                                            <td className="py-2 px-4  text-black text-left">{waveProperties.frequency} Hz</td>
-                                            <td className="py-2 px-4  text-black text-left">{waveProperties.energy} J</td>
-                                        </tr>
+                                            {Object.entries(acidity).map(([key, value]) => (
+                                                <tr key={key} className={value === 'acidic' ? 'bg-red-200 hover:bg-gray-100' : 'bg-blue-200 hover:bg-gray-100'}>
+                                                    <td className="py-2 px-4 border-b border-gray-200">{key}</td>
+                                                    <td className="py-2 px-4 border-b border-gray-200">{value}</td>
+                                                </tr>
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>

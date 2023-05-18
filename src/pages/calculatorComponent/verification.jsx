@@ -15,8 +15,6 @@ const compound = [
 
 ]
 
-
-
 export default function VerifyBalance() {
     const [compoundArray, setCompoundArray] = useState([''])
     const [reactives, setReactives] = useState(['']);
@@ -54,7 +52,21 @@ export default function VerifyBalance() {
 
     const handleChange = (event) => {
         setformValue({
+            ...formValue,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleStChange = (event) => {
+        setformStoichiometry({
             ...formStoichiometry,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleRChange = (event) => {
+        setformReagent({
+            ...formReagent,
             [event.target.name]: event.target.value,
         });
     };
@@ -159,15 +171,17 @@ export default function VerifyBalance() {
             .post("http://127.0.0.1:8000/api/v1.0/balance-reaction", formData)
             .then((response) => {
                 let data = response.data;
-                const reactionValue = data.reaction[0];
+                const reactionValue = data.reaction;
                 setReaction(reactionValue)
                 const combinedArray = [...reactives, ...products];
                 const uniqueCompounds = combinedArray.filter((value, index, self) => {
                     return self.indexOf(value) === index;
                 });
+                console.log("Unique Compounds"+uniqueCompounds)
+                console.log("Combined Array"+combinedArray)
                 setCompoundArray(uniqueCompounds)
                 setall_compounds(separateCompounds(reactionValue));
-
+                console.log(all_compounds)
 
             }).catch((error) => {
                 if (error.response.data != null) {
@@ -245,7 +259,7 @@ export default function VerifyBalance() {
         formDataReagent.append("reaction", reactionUser)
 
         axios
-            .post("http://127.0.0.1:8000/api/v1.0/calculate-reactant", formDataReagent)
+            .post("http://127.0.0.1:8000/api/v1.0/limiting-reagent", formDataReagent)
             .then((response) => {
                 let data = response.data;
                 setlimitingReagent("Reactivo Limitante: " + data.limiting_reagent)
@@ -385,7 +399,7 @@ export default function VerifyBalance() {
                                             name="position"
                                             className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                             defaultValue=""
-                                            onChange={handleChange}
+                                            onChange={handleStChange}
                                         >
                                             {compound.map((item, index) => (
                                                 <option key={index} value={index + 1}>
@@ -408,8 +422,8 @@ export default function VerifyBalance() {
                                             className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
                                             placeholder="3256"
                                             required
-                                            value={formStoichiometry.value}
-                                            onChange={handleChange}
+                                            value={formStoichiometry.quantity}
+                                            onChange={handleStChange}
                                         />
                                     </div>
 
@@ -422,7 +436,7 @@ export default function VerifyBalance() {
                                             name="unit"
                                             className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                             defaultValue="Mol"
-                                            onChange={handleChange}
+                                            onChange={handleStChange}
                                         >
                                             {units.map((uni) => (
                                                 <option key={uni.id} value={uni.unit}>

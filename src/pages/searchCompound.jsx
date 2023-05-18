@@ -117,8 +117,6 @@ function SearchCompound() {
                             </div>
                         </div>
 
-
-
                     )}
 
                 </div>

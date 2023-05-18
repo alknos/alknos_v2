@@ -16,6 +16,8 @@ import {
   Battery50Icon,
   BoltIcon,
   SignalIcon,
+  ChartPieIcon,
+  BeakerIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -35,6 +37,9 @@ function NavigationDesktop() {
     { name: 'Celdas Galvánicas', href: '/galvanicCells', icon: Battery50Icon, current: router.pathname === '/galvanicCells' },
     { name: 'Electrólisis', href: '/electrolisis', icon: BoltIcon, current: router.pathname === '/electrolisis' },
     { name: 'Ondas', href: '/waves', icon: SignalIcon, current: router.pathname === '/waves' },
+    { name: 'Fórmula Empirica', href: '/empiricalFormulae', icon: ChartPieIcon, current: router.pathname === '/empiricalFormulae' },
+    { name: 'Acidez', href: '/acidity', icon: BeakerIcon, current: router.pathname === '/acidity' },
+
   ]
 
 
@@ -74,6 +79,9 @@ function NavigationMobile() {
     { name: 'Celdas Galvánicas', href: '/galvanicCells', icon: Battery50Icon, current: router.pathname === '/galvanicCells' },
     { name: 'Electrólisis', href: '/electrolisis', icon: BoltIcon, current: router.pathname === '/electrolisis' },
     { name: 'Ondas', href: '/waves', icon: SignalIcon, current: router.pathname === '/waves' },
+    { name: 'Fórmula Empirica', href: '/empiricalFormulae', icon: ChartPieIcon, current: router.pathname === '/empiricalFormulae' },
+    { name: 'Acidez', href: '/acidity', icon: BeakerIcon, current: router.pathname === '/acidity' },
+
   ]
 
   return (
@@ -102,8 +110,6 @@ function NavigationMobile() {
     </nav>
   )
 }
-
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
