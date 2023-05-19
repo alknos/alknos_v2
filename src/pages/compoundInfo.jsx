@@ -252,6 +252,7 @@ function CompoundInfo() {
                                 <br />
                                 <iframe className="w-full overflow-hidden h-96" id="3DMol" srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 40rem; height:40rem; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`} width="500" height="500"></iframe>
                             </>
+                            
                         );
                     } else {
                         return null;
