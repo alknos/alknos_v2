@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { Button } from './ButtonNewsletter'
+import { Button } from './buttonNewsletter'
 import { Container } from './containerNewsletter'
 import backgroundImage from './src/background-newsletter.jpg'
 
