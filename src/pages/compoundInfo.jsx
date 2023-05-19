@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import swal from "sweetalert2";
 import Navhome from "./navhome";
 import Head from "next/head";
+import { CubeTransparentIcon } from "@heroicons/react/24/outline";
 
 
 function CompoundInfo() {
@@ -64,7 +65,7 @@ function CompoundInfo() {
             <Head>
                 <title>{arrayChem} Information | Alknos</title>
             </Head>
-            <div className="p-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8  ">
+            <div className="p-5 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 ">
                 <div className="p-10">
                     <header >
                         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -76,7 +77,7 @@ function CompoundInfo() {
 
                         <div className="px-4 py-5 sm:px-6">
                             <h3 className="text-lg font-medium leading-6 text-gray-900">Detección de compuesto</h3>
-                            <p className="mt-1 max-w-2xl text-sm text-gray-500">Información acerca del compuesto detectado.</p>
+                            <p className="max-w-2xl mt-1 text-sm text-gray-500">Información acerca del compuesto detectado.</p>
                         </div>
 
 
@@ -97,14 +98,14 @@ function CompoundInfo() {
 
                                         return (
                                             <div
-                                                className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                                className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
                                                 key={index}>
                                                 <dt className="text-sm font-medium text-gray-500">{item.name}</dt>
                                                 <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                                                     {chemSafInfo.map((item, index) => {
                                                         return (
                                                             <>
-                                                                <div key={index} className="p-2 w-32  bg-white  rounded-lg shadow-md">
+                                                                <div key={index} className="w-32 p-2 bg-white rounded-lg shadow-md">
                                                                     <div className='flex items-center'>
                                                                         <Image
                                                                             className="w-min"
@@ -115,7 +116,7 @@ function CompoundInfo() {
                                                                             unoptimized />
                                                                     </div>
                                                                     <div className="p-2">
-                                                                        <p className=" font-normal text-md text-gray-800">{item.description}</p>
+                                                                        <p className="font-normal text-gray-800  text-md">{item.description}</p>
                                                                     </div>
                                                                 </div>
                                                                 <br />
@@ -131,7 +132,7 @@ function CompoundInfo() {
                                         return (
                                             <div
                                                 key={index}
-                                                className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                                className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
                                             >
                                                 <dt className="text-sm font-medium text-gray-500">{item.name}</dt>
                                                 <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
@@ -148,7 +149,7 @@ function CompoundInfo() {
                                     return (
                                         <div
                                             key={index}
-                                            className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                            className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
                                         >
                                             <dt className="text-sm font-medium text-gray-500">{item.name}</dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
@@ -171,7 +172,7 @@ function CompoundInfo() {
                 <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Estructura en 2D</h3>
-                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Visualiza la fórmula taquigráfica del {arrayChem}.</p>
+                        <p className="max-w-2xl mt-1 text-sm text-gray-500">Visualiza la fórmula taquigráfica del {arrayChem}.</p>
                     </div>
                     <div className="border-t border-gray-200">
                         {responseArray.map((item, index) => {
@@ -181,7 +182,7 @@ function CompoundInfo() {
                                     <div
                                         id="2D"
                                         key={index}
-                                        className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt className="text-sm font-medium text-gray-800">{item.name}</dt>
                                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                                             <Image
@@ -208,7 +209,7 @@ function CompoundInfo() {
                                         <div
                                             id="2D"
                                             key={index}
-                                            className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-800">{item.name}</dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                                                 <Image
@@ -239,11 +240,12 @@ function CompoundInfo() {
                                 <div key={index} className="bg-white shadow sm:rounded-lg">
                                     <div className="px-4 py-5 sm:px-6">
                                         <h3 className="text-lg font-medium leading-6 text-gray-900">Estructura en 3D</h3>
-                                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Visualiza la fórmula taquigráfica renderizada en 3D del {arrayChem}.</p>
+                                        <p className="max-w-2xl mt-1 text-sm text-gray-500">Visualiza la fórmula taquigráfica renderizada en 3D del {arrayChem}.</p>
+                                        <CubeTransparentIcon/>
                                     </div>
                                 </div>
                                 <br />
-                                <iframe className="h-96 w-full overflow-hidden" id="3DMol" srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 40rem; height:40rem; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`} width="500" height="500"></iframe>
+                                <iframe className="w-full overflow-hidden h-96" id="3DMol" srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 40rem; height:40rem; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`} width="500" height="500"></iframe>
                             </>
                         );
                     } else {
