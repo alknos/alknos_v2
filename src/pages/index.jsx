@@ -1,10 +1,10 @@
 import Navbar from "./navbar"
 import Hero from "./landing_Components/hero"
 import { Pricing } from "./landing_Components/pricing"
-import { SecondaryFeatures } from "./landing_Components/SecondaryFeatures"
+import { SecondaryFeatures } from "./landing_Components/secondaryFeatures"
 import Footer from "./landing_Components/footer"
-import { PrimaryFeatures } from "./landing_Components/PrimaryFeatures"
-import { Newsletter } from "./landing_Components/Newsletter"
+import { PrimaryFeatures } from "./landing_Components/primaryFeatures"
+import { Newsletter } from "./landing_Components/newsletter"
 import { Screencasts } from "./landing_Components/screencasts"
 
 export default function Home() {
