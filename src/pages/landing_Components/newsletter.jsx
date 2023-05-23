@@ -19,7 +19,7 @@ function ArrowRightIcon(props) {
   )
 }
 
-export default function Newsletter() {
+export function Newsletter() {
   return (
     <section id="newsletter" aria-label="Newsletter">
       <Container>

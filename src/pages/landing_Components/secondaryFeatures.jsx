@@ -210,7 +210,7 @@ function FeaturesDesktop() {
   )
 }
 
-export default function SecondaryFeatures() {
+export function SecondaryFeatures() {
   return (
 
     <section

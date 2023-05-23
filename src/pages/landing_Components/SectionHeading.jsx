@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-export default function SectionHeading({ number, children, className, ...props }) {
+export function SectionHeading({ number, children, className, ...props }) {
   return (
     <h2
       className={clsx(

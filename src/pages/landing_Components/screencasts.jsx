@@ -54,7 +54,7 @@ function PlayIcon(props) {
   )
 }
 
-export default function Screencasts() {
+export function Screencasts() {
   return (
     <section
       id="screencasts"

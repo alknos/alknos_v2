@@ -14,7 +14,7 @@ function Label({ id, children }) {
   )
 }
 
-export default function TextField({
+export function TextField({
   id,
   label,
   placeholder,

@@ -24,7 +24,7 @@ const variantStyles = {
   },
 }
 
-export default function Button({
+export function Button({
   variant = 'solid',
   color = 'slate',
   className,

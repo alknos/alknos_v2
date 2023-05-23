@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import backgroundImage from './src/background-auth.jpg'
 
-export default function AuthLayout({ children }) {
+export function AuthLayout({ children }) {
   return (
     <>
       <div className="flex h-screen justify-center md:px-12 lg:px-0">
