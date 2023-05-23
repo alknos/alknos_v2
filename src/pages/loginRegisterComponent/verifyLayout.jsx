@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import backgroundImage from './src/background-auth.jpg'
 
-export function VerifyLayout({ children }) {
+export default function VerifyLayout({ children }) {
   return (
     <>
       <div className="flex justify-center h-screen md:px-12 lg:px-0">

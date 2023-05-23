@@ -21,7 +21,7 @@ const variantStyles = {
   },
 }
 
-export const Button = forwardRef(function Button(
+export default Button = forwardRef(function Button(
   { variant = 'solid', color = 'gray', className, href, ...props },
   ref
 ) {
