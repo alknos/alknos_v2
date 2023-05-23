@@ -125,7 +125,7 @@ function Navhome(props) {
     setUsername(cookies.get('username'));
     console.log(username);
     if(username == null){
-      window.location.href = 'http://localhost:3000/login';
+      window.location.href = 'http://macsafe.gerdoc.com:3000/login';
     }
     setCompleteName(cookies.get('complete_name'));
   }, [username]);
@@ -135,7 +135,7 @@ function Navhome(props) {
     cookies.remove('username')
     cookies.remove('complete_name')
     cookies.remove('token')
-    window.location.href = 'http://localhost:3000/';
+    window.location.href = 'http://macsafe.gerdoc.com:3000/';
   };
 
   return (
