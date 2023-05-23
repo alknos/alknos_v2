@@ -24,8 +24,8 @@ export default function Login() {
     });
   };
 
-  const baseURL = "http://127.0.0.1:8000/api/v1.0/login";
-  const URL = "http://127.0.0.1:8000/api/v1.0/get-details";
+  const baseURL = "http://34.125.31.170:8000/api/v1.0/login";
+  const URL = "http://34.125.31.170:8000/api/v1.0/get-details";
 
   const handleSubmit = (event) => {
     event.preventDefault();

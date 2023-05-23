@@ -45,7 +45,7 @@ export default function Detection() {
         formData.append("base64", "")
         //Starts inference model
         axios
-            .get("http://127.0.0.1:8000/api/v1.0/chem-detection", formData)
+            .get("http://34.125.31.170:8000/api/v1.0/chem-detection", formData)
             .then((response) => {
                 console.log(response.data);
             }).catch((error) => {
@@ -91,7 +91,7 @@ export default function Detection() {
                 result.replaceAll("data:image/png;base64,", "")
             );
             axios
-                .post("http://127.0.0.1:8000/api/v1.0/chem-detection", formData)
+                .post("http://34.125.31.170:8000/api/v1.0/chem-detection", formData)
                 .then((response) => {
                     console.log(response.data);
                     setIupacName(response.data.iupac_name);

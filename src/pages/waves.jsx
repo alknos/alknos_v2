@@ -51,7 +51,7 @@ export default function GalvanicCells() {
         formWavelength.append('property', 'wavelength')
 
         axios
-            .post("http://127.0.0.1:8000/api/v1.0/electromagnetic-wave", formWavelength)
+            .post("http://34.125.31.170:8000/api/v1.0/electromagnetic-wave", formWavelength)
             .then((response) => {
                 let data = response.data;
                 console.log(data)
@@ -89,7 +89,7 @@ export default function GalvanicCells() {
         formEnergy.append('property', 'energy')
 
         axios
-            .post("http://127.0.0.1:8000/api/v1.0/electromagnetic-wave", formEnergy)
+            .post("http://34.125.31.170:8000/api/v1.0/electromagnetic-wave", formEnergy)
             .then((response) => {
                 let data = response.data;
                 setWaveProperties(data)
@@ -126,7 +126,7 @@ export default function GalvanicCells() {
         formFrecuency.append('property', 'frequency')
 
         axios
-            .post("http://127.0.0.1:8000/api/v1.0/electromagnetic-wave", formFrecuency)
+            .post("http://34.125.31.170:8000/api/v1.0/electromagnetic-wave", formFrecuency)
             .then((response) => {
                 let data = response.data;
                 setWaveProperties(data)

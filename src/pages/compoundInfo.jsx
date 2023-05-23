@@ -24,7 +24,7 @@ function CompoundInfo() {
                 "cid", cid
             );
             axios
-                .post("http://127.0.0.1:8000/api/v1.0/compound-information", formData)
+                .post("http://34.125.31.170:8000/api/v1.0/compound-information", formData)
                 .then((response) => {
                     let data = response.data;
                     setResponseData(data);

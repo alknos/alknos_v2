@@ -57,7 +57,7 @@ export default function GalvanicCells() {
         const formData = new FormData(event.target);
 
         axios
-            .post("http://127.0.0.1:8000/api/v1.0/acidity-calculation", formData)
+            .post("http://34.125.31.170:8000/api/v1.0/acidity-calculation", formData)
             .then((response) => {
                 let data = response.data;
                 setAcidity(data)
