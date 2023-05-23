@@ -50,7 +50,7 @@ export default function Register() {
           icon: "success",
         }).then(() => {
           //window.location.reload(false);
-          window.location.href = 'http://macsafe.gerdoc.com:3000/login';
+          window.location.href = 'http://macsafe.gerdoc.com/login';
         });
       })
       .catch((error) => {

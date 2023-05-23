@@ -39,7 +39,7 @@ export default function PasswordResetMail() {
         cookies.set("token", response.data.token, { path: "/" })
         cookies.set("username",formValue.username,{path:"/"});
 
-        window.location.href = 'http://macsafe.gerdoc.com:3000/login';
+        window.location.href = 'http://macsafe.gerdoc.com/login';
         //window.location.reload(false);
       })
       .catch((error) => {

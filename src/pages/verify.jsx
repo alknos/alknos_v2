@@ -49,7 +49,7 @@ export default function Verify() {
             .then((response) => {
               
                 console.log(response.data);
-                window.location.href = 'http://macsafe.gerdoc.com:3000/login';
+                window.location.href = 'http://macsafe.gerdoc.com/login';
                 new swal({
                     title: "Verificacion correcta",
                     icon: "success",

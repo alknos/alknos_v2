@@ -57,7 +57,7 @@ export default function Login() {
           console.error(error);
         });
 
-        window.location.href = 'http://macsafe.gerdoc.com:3000/homepage';
+        window.location.href = 'http://macsafe.gerdoc.com/homepage';
       })
       .catch((error) => {
         console.log(error.response.data);
