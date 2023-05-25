@@ -74,7 +74,7 @@ export default function InorganicCalculator() {
         );
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/inorganic-reaction", formData)
+            .post("http://34.125.67.36:8000/api/v1.0/inorganic-reaction", formData)
             .then((response) => {
                 let data = response.data;
 

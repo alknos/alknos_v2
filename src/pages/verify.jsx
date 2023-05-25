@@ -24,7 +24,7 @@ export default function Verify() {
         let token_decoded = token_query.replaceAll("%3D", "=").replaceAll("%2F", "/")
         let url_array = token_decoded.split("/");
 
-        const baseURL = "http://34.125.31.170:8000/api/v1.0/verify";
+        const baseURL = "http://34.125.67.36:8000/api/v1.0/verify";
 
         let uid = url_array[0];
         let token = url_array[1];

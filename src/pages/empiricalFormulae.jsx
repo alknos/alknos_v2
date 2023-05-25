@@ -53,7 +53,7 @@ export default function Electrolysis() {
         };
 
         axios
-            .post('http://34.125.31.170:8000/api/v1.0/empirical-formula', data)
+            .post('http://34.125.67.36:8000/api/v1.0/empirical-formula', data)
             .then(response => {
                 console.log('Formulario enviado con éxito:', response.data);
                 const { empirical_formula } = response.data;

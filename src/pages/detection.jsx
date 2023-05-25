@@ -14,10 +14,6 @@ export default function Detection() {
     const [common_name, setCommonName] = useState("-");
     const [general_info, setGeneralInfo] = useState("Información General Del Compuesto");
 
-    useEffect(() => {
-        requestGet()
-    }, [])
-
     //Functions
     const getBase64 = (file) => {
         return new Promise((resolve) => {
@@ -39,40 +35,6 @@ export default function Detection() {
         });
     };
 
-    const requestGet = async () => {
-        // Store the states in the form data
-        const formData = new FormData();
-        formData.append("base64", "")
-        //Starts inference model
-        axios
-            .get("http://34.125.31.170:8000/api/v1.0/chem-detection", formData)
-            .then((response) => {
-                console.log(response.data);
-            }).catch((error) => {
-                if (error.response.data != null) {
-                    console.log(JSON.stringify(error.response.data)
-                        .replaceAll("[", "")
-                        .replaceAll("]", "")
-                        .replaceAll("{", "")
-                        .replaceAll("}", "")
-                        .replaceAll(",", "\n")
-                        .replaceAll('"', ""));
-                    new swal({
-                        title: "Error",
-                        icon: "error",
-                        text: "Ocurrió algo, vuelve a intentarlo"
-                    });
-                }
-                else {
-                    new swal({
-                        title: "Error",
-                        icon: "error",
-                        text: "Hubo un error inesperado",
-                    });
-                }
-            });
-    }
-
     //Handlers
 
     const handleFile = (e) => {
@@ -91,7 +53,7 @@ export default function Detection() {
                 result.replaceAll("data:image/png;base64,", "")
             );
             axios
-                .post("http://34.125.31.170:8000/api/v1.0/chem-detection", formData)
+                .post("http://34.125.67.36:8000/api/v1.0/chem-detection", formData)
                 .then((response) => {
                     console.log(response.data);
                     setIupacName(response.data.iupac_name);

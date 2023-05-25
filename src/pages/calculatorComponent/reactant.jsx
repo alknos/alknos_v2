@@ -141,7 +141,7 @@ export default function VerifyBalance() {
         setReactionUser(reactionString)
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/balance-reaction", formData)
+            .post("http://34.125.67.36:8000/api/v1.0/balance-reaction", formData)
             .then((response) => {
                 let data = response.data;
                 const reactionValue = data.reaction[0];
@@ -190,7 +190,7 @@ export default function VerifyBalance() {
         formDataStoichiometry.append("reaction", reactionUser)
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/calculate-reactant", formDataStoichiometry)
+            .post("http://34.125.67.36:8000/api/v1.0/calculate-reactant", formDataStoichiometry)
             .then((response) => {
                 let data = response.data;
                 console.log(data);

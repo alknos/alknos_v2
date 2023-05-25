@@ -22,7 +22,7 @@ function SearchCompound() {
         try {
             const formData = new FormData();
             formData.append('query', query);
-            const response = await axios.post('http://34.125.31.170:8000/api/v1.0/compound-query', formData);
+            const response = await axios.post('http://34.125.67.36:8000/api/v1.0/compound-query', formData);
             setResponseData(response.data);
             setLoading(false);
         } catch (error) {

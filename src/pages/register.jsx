@@ -27,7 +27,7 @@ export default function Register() {
     });
   };
 
-  const baseURL = "http://34.125.31.170:8000/api/v1.0/register";
+  const baseURL = "http://34.125.67.36:8000/api/v1.0/register";
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -168,7 +168,7 @@ export default function VerifyBalance() {
         setReactionUser(reactionString)
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/balance-reaction", formData)
+            .post("http://34.125.67.36:8000/api/v1.0/balance-reaction", formData)
             .then((response) => {
                 let data = response.data;
                 const reactionValue = data.reaction;
@@ -219,7 +219,7 @@ export default function VerifyBalance() {
         formDataStoichiometry.append("reaction", reactionUser)
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/calculate-stoichiometry", formDataStoichiometry)
+            .post("http://34.125.67.36:8000/api/v1.0/calculate-stoichiometry", formDataStoichiometry)
             .then((response) => {
                 let data = response.data;
                 console.log(data);
@@ -259,7 +259,7 @@ export default function VerifyBalance() {
         formDataReagent.append("reaction", reactionUser)
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/limiting-reagent", formDataReagent)
+            .post("http://34.125.67.36:8000/api/v1.0/limiting-reagent", formDataReagent)
             .then((response) => {
                 let data = response.data;
                 setlimitingReagent("Reactivo Limitante: " + data.limiting_reagent)

@@ -89,7 +89,7 @@ export default function Electrolysis() {
 
 
         axios
-            .post("http://34.125.31.170:8000/api/v1.0/calculate-electrolysis", requestPayload)
+            .post("http://34.125.67.36:8000/api/v1.0/calculate-electrolysis", requestPayload)
             .then((response) => {
                 let data = response.data;
                 console.log(Object.values(data));
