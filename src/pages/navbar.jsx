@@ -81,7 +81,7 @@ export default function Navbar() {
 
                 <Link
                   href="/login"
-                  className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm  font-medium text-white bg-transparent"
+                  className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm  font-medium text-white bg-white"
                   rounded-md>
                   <span className='block text-white px-4 py-2 text-sm font-light rounded-md bg-blue-900'>Inicia Sesión</span>
                 </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
               leaveTo="opacity-0 scale-95"
             >
               <Popover.Panel focus className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-                <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-transparent divide-y-2 divide-gray-50">
+                <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                   <div className="pt-5 pb-6 px-5">
                     <div className="flex items-center justify-between">
                       <div>
@@ -138,7 +138,7 @@ export default function Navbar() {
                         ¿Ya estás registrado?{' '}
                         <Link
                           href="/login"
-                          className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm  font-medium text-white bg-transparent"
+                          className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm  font-medium text-white bg-white"
                           rounded-md>
                           <span className='block text-white px-4 py-2 text-sm font-light rounded-md bg-blue-900'>Inicia Sesión</span>
                         </Link>
