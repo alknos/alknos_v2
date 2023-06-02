@@ -93,8 +93,8 @@ export default function Electrolysis() {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <header>
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Fórmula empírica</h1>
-                        <p className="text-lg text-gray-700 mt-2">
-                            Para calcular una fórmula empírica, se requiere de hasta 4 elementos, y los porcentajes de estos elementos deben sumar 100%.
+                        <p className="text-lg text-gray-500 mt-2">
+                            Para calcular una fórmula empírica, se requiere de hasta 4 elementos, y los porcentajes de estos elementos deben sumar 100%<br/>
                             Asegúrate de proporcionar los elementos y sus respectivos porcentajes correctamente antes de calcular.
                         </p>
                     </header>

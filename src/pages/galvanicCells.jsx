@@ -67,7 +67,7 @@ export default function GalvanicCells() {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <header>
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Celdas Galvánicas</h1>
-                        <p className="text-lg text-gray-700 mt-2">
+                        <p className="text-lg text-gray-500 mt-2">
                             Para calcular el diagrama y poder elaborar una celda galvánica, se requiere de la presencia de dos metales.
                             Asegúrate de proporcionar la información de los metales correctamente antes de realizar los cálculos.
                         </p>

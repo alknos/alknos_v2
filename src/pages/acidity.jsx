@@ -99,8 +99,8 @@ export default function GalvanicCells() {
                         <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-gray-900 text-center mb-5">
                             Calculadora de Acidez
                         </h1>
-                        <p className="text-lg text-gray-700 text-center">
-                            Para realizar el cálculo de acidez, se requiere únicamente de un parámetro.
+                        <p className="text-lg text-gray-500 text-center">
+                            Para realizar el cálculo de acidez, se requiere únicamente de un parámetro.<br/>
                             Asegúrate de proporcionar el valor necesario antes de realizar el cálculo.
                         </p>
                     </header>

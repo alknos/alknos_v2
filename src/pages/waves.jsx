@@ -167,7 +167,7 @@ export default function GalvanicCells() {
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 text-center mb-8">
                             Ondas Electromagnéticas
                         </h1>
-                        <p className="text-lg text-gray-700 text-center">
+                        <p className="text-lg text-gray-500 text-center">
                             Para realizar el cálculo de las ondas electromagnéticas, se requiere únicamente de un parámetro.
                             Asegúrate de proporcionar el parámetro necesario correctamente antes de realizar el cálculo.
                         </p>

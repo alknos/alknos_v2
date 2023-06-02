@@ -15,10 +15,10 @@ export default function StyCalculator() {
                 <header>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Calculadora Estequiométrica</h1>
-                        <p className="text-lg text-gray-700 mt-2">
-                            Para utilizar la calculadora estequiométrica, es necesario ingresar una ecuación química, ya sea balanceada o no.
-                            A partir del peso experimental de un compuesto, podrás calcular el peso de otros compuestos involucrados en la reacción.
-                            Además, tendrás la opción de calcular el reactivo limitante utilizando los pesos experimentales de los dos reactivos.
+                        <p className="text-lg text-gray-500 mt-2">
+                            Para utilizar la calculadora estequiométrica, es necesario ingresar una ecuación química, ya sea balanceada o no.<br/>
+                            A partir del peso experimental de un compuesto, podrás calcular el peso de otros compuestos involucrados en la reacción.<br/>
+                            Además, tendrás la opción de calcular el reactivo limitante utilizando los pesos experimentales de los dos reactivos.<br/>
                             Asegúrate de ingresar la información requerida correctamente para obtener los resultados deseados.
                         </p>
                     </div>
