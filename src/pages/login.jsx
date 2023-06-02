@@ -100,6 +100,8 @@ export default function Login() {
                 Regístrate
               </Link>{' '}
               por un plan gratuito
+              <br />
+              Recuerda que debes verificar tu cuenta, de lo contrario, no podrás acceder.
             </p>
           </div>
         </div>
