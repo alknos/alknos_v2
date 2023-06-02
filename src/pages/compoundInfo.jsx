@@ -249,9 +249,16 @@ function CompoundInfo() {
                                     </div>
                                 </div>
                                 <br />
-                                <div className="overflow-hidden aspect-w-1 aspect-h-1">
-                                    <iframe className="w-full h-full" id="3DMol" srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 100%; height: 100%; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`} />
+                                <div className="overflow-hidden">
+                                    <div className="aspect-w-1 aspect-h-1">
+                                        <iframe
+                                            className="w-full h-full"
+                                            id="3DMol"
+                                            srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 100%; height: 100%; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`}
+                                        />
+                                    </div>
                                 </div>
+
                             </>
 
                         );
