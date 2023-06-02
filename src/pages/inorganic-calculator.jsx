@@ -95,9 +95,6 @@ export default function InorganicCalculator() {
                 };
 
                 showProducts(data);
-
-
-
             })
             .catch((error) => {
                 new swal({

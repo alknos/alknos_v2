@@ -152,18 +152,10 @@ export default function Detection() {
                                     <dt className="text-sm font-medium text-gray-500">Nombres comunes</dt>
                                     <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                                         {Object.values(common_name).map((item, key) =>
-                                            <p key={key}>{item}</p>
+                                            <>
+                                                <p key={key}>{item}</p><br />
+                                            </>
                                         )}
-                                    </dd>
-                                </div>
-                                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt className="text-sm font-medium text-gray-500">Visualización</dt>
-                                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><Visualization /></dd>
-                                </div>
-                                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt className="text-sm font-medium text-gray-500">Información general</dt>
-                                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                        {general_info}
                                     </dd>
                                 </div>
                             </dl>

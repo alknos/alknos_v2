@@ -58,7 +58,7 @@ function SearchCompound() {
                             Busca cualquier compuesto
                         </p>
                         <p className="mx-auto mt-5 max-w-xl text-xl text-gray-500">
-                            Obten información de compuestos para investigaciones y tareas.
+                            Obten información de compuestos para investigaciones y tareas. (El compuesto deberá ser escrito en inglés)
                         </p>
 
                     </div>

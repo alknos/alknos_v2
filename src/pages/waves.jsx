@@ -167,6 +167,10 @@ export default function GalvanicCells() {
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 text-center mb-8">
                             Ondas Electromagnéticas
                         </h1>
+                        <p className="text-lg text-gray-700 text-center">
+                            Para realizar el cálculo de las ondas electromagnéticas, se requiere únicamente de un parámetro.
+                            Asegúrate de proporcionar el parámetro necesario correctamente antes de realizar el cálculo.
+                        </p>
                     </header>
 
                     <form id="frequency" onSubmit={calculateFrequency} className="p-5">
@@ -199,7 +203,6 @@ export default function GalvanicCells() {
                                     placeholder="7"
                                     onChange={handleFrecuencyChange}
                                     value={formFrecuency.power}
-                                    min="1"
                                     step="1"
                                     required
                                 />
@@ -245,7 +248,6 @@ export default function GalvanicCells() {
                                     step="1"
                                     onChange={handleWavelengthChange}
                                     value={formWavelength.power}
-                                    min="1"
                                     required
                                 />
                             </div>
@@ -259,7 +261,7 @@ export default function GalvanicCells() {
                         </fieldset>
                     </form>
 
-                    <form id="energy" onSubmit={calculateEnergy} className="p-5">
+                    <form id="energy" onSubmit={calculateEnergy} className="p-5 w-full">
                         <fieldset className="px-4">
                             <div className="mb-4">
                                 <label htmlFor="energyValue" className="text-sm font-medium text-gray-500">
@@ -290,7 +292,6 @@ export default function GalvanicCells() {
                                     onChange={handleEnergyChange}
                                     value={formEnergy.power}
                                     step="1"
-                                    min="1"
                                     required
                                 />
                             </div>

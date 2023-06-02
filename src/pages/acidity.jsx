@@ -93,38 +93,43 @@ export default function GalvanicCells() {
             <Head>
                 <title>Acidity | Alknos</title>
             </Head>
-            <main id="Acidity" className="p-10" >
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <main id="Acidity" className="p-5 sm:p-10">
+                <div className="mx-auto max-w-7xl sm:px-4 md:px-6 lg:px-8">
                     <header>
-                        <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Calculadora de Acidez</h1>
+                        <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-gray-900 text-center mb-5">
+                            Calculadora de Acidez
+                        </h1>
+                        <p className="text-lg text-gray-700 text-center">
+                            Para realizar el cálculo de acidez, se requiere únicamente de un parámetro.
+                            Asegúrate de proporcionar el valor necesario antes de realizar el cálculo.
+                        </p>
                     </header>
 
-                    <form
-                        id="pH"
-                        onSubmit={calculateAcidity}
-                        className="p-5">
-                        <fieldset className="px-48">
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
+                    <form id="pH" onSubmit={calculateAcidity} className="mb-8">
+                        <fieldset className="px-4">
+                            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div className="rounded-lg bg-white p-4 shadow">
+                                    <dt className="text-sm font-medium text-gray-500">
                                         Potencial Hidrógeno (pH)
                                     </dt>
                                     <input
                                         type="number"
                                         name="value"
                                         id="value"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-lg sm:text-xl focus:border-green-600 focus:ring-0"
                                         placeholder="7.2"
-                                        min={"0"}
-                                        max={"14"}
+                                        min="0"
+                                        max="14"
                                         onChange={handlePHChange}
                                         value={formAcidityPH.value}
-                                        required />
+                                        required
+                                    />
                                     <input type="hidden" name="property" id="property" value="pH" />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                    className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                                >
                                     Calcular acidez con Potencial Hidrógeno (pH)
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
@@ -132,31 +137,31 @@ export default function GalvanicCells() {
                         </fieldset>
                     </form>
 
-                    <form
-                        id="pOH"
-                        onSubmit={calculateAcidity}
-                        className="p-5">
-                        <fieldset className="px-48">
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
+                    <form id="pOH" onSubmit={calculateAcidity} className="mb-8">
+                        <fieldset className="px-4">
+                            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div className="rounded-lg bg-white p-4 shadow">
+                                    <dt className="text-sm font-medium text-gray-500">
                                         Potencial Aniones Hidroxilo (pOH)
                                     </dt>
                                     <input
                                         type="number"
                                         name="value"
                                         id="value"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-lg sm:text-xl focus:border-green-600 focus:ring-0"
                                         placeholder="3"
                                         onChange={handlePOHChange}
                                         value={formAcidityPOH.value}
-                                        min={"1"}
-                                        required />
+                                        min="0"
+                                        max="14"
+                                        required
+                                    />
                                     <input type="hidden" name="property" id="property" value="pOH" />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                >
                                     Calcular acidez con Potencial Aniones Hidroxilo (pOH)
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
@@ -164,46 +169,46 @@ export default function GalvanicCells() {
                         </fieldset>
                     </form>
 
-                    <form
-                        id="H"
-                        onSubmit={calculateAcidity}
-                        className="p-5">
-                        <fieldset className="px-48">
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
+                    <form id="H" onSubmit={calculateAcidity} className="mb-8">
+                        <fieldset className="px-4">
+                            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <div className="rounded-lg bg-white p-4 shadow">
+                                    <dt className="text-sm font-medium text-gray-500">
                                         Ión de Hidrógeno [H+]
                                     </dt>
                                     <input
                                         type="number"
                                         name="value"
                                         id="value"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-lg sm:text-xl focus:border-green-600 focus:ring-0"
                                         placeholder="2"
                                         onChange={handleHChange}
                                         value={formAcidityH.value}
-                                        required />
+                                        required
+                                    />
                                     <input type="hidden" name="property" id="property" value="H" />
                                 </div>
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
+                                <div className="rounded-lg bg-white p-4 shadow">
+                                    <dt className="text-sm font-medium text-gray-500">
                                         Potencia de la magnitud
                                     </dt>
                                     <input
                                         type="number"
                                         name="power"
                                         id="power"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-lg sm:text-xl focus:border-green-600 focus:ring-0"
                                         placeholder="7"
                                         onChange={handleHChange}
                                         value={formAcidityH.power}
-                                        step={"1"}
-                                        min={"1"}
-                                        required />
+                                        step="1"
+
+                                        required
+                                    />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
+                                    className="inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2"
+                                >
                                     Calcular acidez con Ión de Hidrógeno [H+]
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
@@ -211,47 +216,47 @@ export default function GalvanicCells() {
                         </fieldset>
                     </form>
 
-                    <form
-                        id="OH"
-                        onSubmit={calculateAcidity}
-                        className="p-5">
-                        <fieldset className="px-48">
-                            <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
+                    <form id="OH" onSubmit={calculateAcidity} className="mb-8">
+                        <fieldset className="px-4">
+                            <dl className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <div className="rounded-lg bg-white p-4 shadow">
+                                    <dt className="text-sm font-medium text-gray-500">
                                         Anión de Hidróxilo [OH-]
                                     </dt>
                                     <input
                                         type="number"
                                         name="value"
                                         id="value"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-lg sm:text-xl focus:border-green-600 focus:ring-0"
                                         placeholder="2"
                                         onChange={handleOHChange}
                                         value={formAcidityOH.value}
-                                        required />
+                                        required
+                                    />
                                     <input type="hidden" name="property" id="property" value="H" />
                                 </div>
-                                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <dt className="truncate text-sm font-medium text-gray-500">
+                                <div className="rounded-lg bg-white p-4 shadow">
+                                    <dt className="text-sm font-medium text-gray-500">
                                         Potencia de la magnitud
                                     </dt>
                                     <input
                                         type="number"
                                         name="power"
                                         id="power"
-                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-xl focus:border-green-600 focus:ring-0 sm:text-xl"
+                                        className="block w-full border-0 border-b border-transparent bg-gray-50 text-lg sm:text-xl focus:border-green-600 focus:ring-0"
                                         placeholder="7"
                                         onChange={handleOHChange}
                                         value={formAcidityOH.power}
-                                        step={"1"}
-                                        min={"1"}
-                                        required />
+                                        step="1"
+
+                                        required
+                                    />
                                     <input type="hidden" name="property" id="property" value="OH" />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center rounded-md border border-transparent bg-amber-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+                                    className="inline-flex items-center rounded-md border border-transparent bg-amber-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                >
                                     Calcular acidez con Ión de Hidrógeno [H+]
                                     <CalculatorIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
                                 </button>
@@ -259,11 +264,9 @@ export default function GalvanicCells() {
                         </fieldset>
                     </form>
 
-
-
                     {acidity !== null && (
                         <>
-                            <div className="p-16 flex justify-center">
+                            <div className="p-8 flex justify-center">
                                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900">Propiedades de Acidez</h1>
                             </div>
                             <div className="flex justify-center">
@@ -277,7 +280,10 @@ export default function GalvanicCells() {
                                         </thead>
                                         <tbody>
                                             {Object.entries(acidity).map(([key, value]) => (
-                                                <tr key={key} className={value === 'acidic' ? 'bg-red-200 hover:bg-gray-100' : 'bg-blue-200 hover:bg-gray-100'}>
+                                                <tr
+                                                    key={key}
+                                                    className={value === 'acidic' ? 'bg-red-200 hover:bg-gray-100' : 'bg-blue-200 hover:bg-gray-100'}
+                                                >
                                                     <td className="py-2 px-4 border-b border-gray-200">{key}</td>
                                                     <td className="py-2 px-4 border-b border-gray-200">{value}</td>
                                                 </tr>
@@ -290,6 +296,7 @@ export default function GalvanicCells() {
                     )}
                 </div>
             </main>
+
         </Navhome>
     )
 }

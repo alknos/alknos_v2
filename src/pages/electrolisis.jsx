@@ -128,6 +128,10 @@ export default function Electrolysis() {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <header>
                         <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Electrólisis</h1>
+                        <p className="text-lg text-gray-700 mt-2">
+                            Para realizar los cálculos de la electrólisis, se requiere de un compuesto y otros dos parámetros.
+                            Asegúrate de proporcionar los valores necesarios antes de calcular.
+                        </p>
                     </header>
 
                     <main id="stoichiometry" className="p-10" >

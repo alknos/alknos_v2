@@ -34,16 +34,16 @@ export default function Electrolysis() {
 
         const sumOfPercentages = chemicals.reduce((total, chemical) => {
             return total + parseFloat(chemical.percentage || 0);
-          }, 0);
-      
-          if (sumOfPercentages !== 100) {
+        }, 0);
+
+        if (sumOfPercentages !== 100) {
             new swal({
                 title: "Error",
                 icon: "error",
                 text: "La suma de los porcentajes debe ser 100"
             });
             return;
-          }
+        }
 
         const data = {
             elements: chemicals.map(({ symbol, percentage }) => ({
@@ -87,12 +87,16 @@ export default function Electrolysis() {
     return (
         <Navhome>
             <Head>
-                <title>Electrolysis | Alknos</title>
+                <title>Fórmula Empírica | Alknos</title>
             </Head>
             <main id="galvanicCell" className="p-10" >
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <header>
-                        <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Electrólisis</h1>
+                        <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Fórmula empírica</h1>
+                        <p className="text-lg text-gray-700 mt-2">
+                            Para calcular una fórmula empírica, se requiere de hasta 4 elementos, y los porcentajes de estos elementos deben sumar 100%.
+                            Asegúrate de proporcionar los elementos y sus respectivos porcentajes correctamente antes de calcular.
+                        </p>
                     </header>
 
                     <main id="stoichiometry" className="p-10" >
