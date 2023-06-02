@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import { Float } from "@react-three/drei"
 import Atom from "./atom"
+import Link from "next/link"
 
 export default function Hero() {
     return (
@@ -26,9 +27,11 @@ export default function Hero() {
                                 </p>
                                 <div className="mt-8 w-max">
                                     <div class="p-1 rounded-lg bg-gradient-to-r from-blue-600 to-teal-400">
+                                    <Link href="/register">
                                         <button class="px-6 py-2 rounded-lg bg-white">
                                             <h1 class="px-6 py-2 rounded-lg text-transparent font-semibold bg-clip-text bg-gradient-to-r from-blue-400 to-teal-500">¡Empieza ya!</h1>
                                         </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
