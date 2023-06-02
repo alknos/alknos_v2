@@ -101,11 +101,11 @@ export default function GalvanicCells() {
                         </h1>
                         <p className="text-lg text-gray-500 text-center">
                             Para realizar el cálculo de acidez, se requiere únicamente de un parámetro.<br/>
-                            Asegúrate de proporcionar el valor necesario antes de realizar el cálculo.
+                            Asegúrate de proporcionar el valor necesario antes de realizar el cálculo.<br/>
                         </p>
                     </header>
 
-                    <form id="pH" onSubmit={calculateAcidity} className="mb-8">
+                    <form id="pH" onSubmit={calculateAcidity} className="p-2 mb-8">
                         <fieldset className="px-4">
                             <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div className="rounded-lg bg-white p-4 shadow">
