@@ -1,7 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { ListBulletIcon, XIcon } from '@heroicons/react/outline'
+import {
+  ListBulletIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 export default function Navbar() {
