@@ -63,16 +63,29 @@ export default function Navbar() {
                       </div>
                       <div className="p-5 bg-gray-50 sm:p-8">
 
-                        <div className="flex items-center">
-                          <div className="text-base font-medium text-gray-300">Enterprise</div>
-                          <span className="ml-3 inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-indigo-100 text-indigo-800">
-                            New
-                          </span>
-                        </div>
-                        <p className="mt-1 text-sm text-gray-50">
-                          Empower your entire team with even more advanced tools.
-                        </p>
+                        <Link href="/#prices" scroll={true} className="text-sm  font-light text-black hover:text-gray-600 duration-200">
+                          Planes
+                        </Link>
+                        <Link href="/about" className="text-sm  font-light text-black hover:text-gray-600 duration-200">
+                          Nosotros
+                        </Link>
+                        <Link href="/contacts" className="text-sm  font-light text-black hover:text-gray-600 duration-200">
+                          Contáctanos
+                        </Link>
 
+
+                        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                          <Link href="/register" className="whitespace-nowrap text-sm font-light text-black hover:text-gray-600 duration-200">
+                            Regístrate
+                          </Link>
+
+                          <Link
+                            href="/login"
+                            className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm  font-medium text-white bg-transparent"
+                            rounded-md>
+                            <span className='block text-white px-4 py-2 text-sm font-light rounded-md bg-blue-900'>Inicia Sesión</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </Popover.Panel>
