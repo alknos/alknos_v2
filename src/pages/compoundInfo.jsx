@@ -236,31 +236,23 @@ function CompoundInfo() {
                     if (item.name === "3D Thumbnail Structure") {
                         return (
                             <>
+
                                 <div key={index} className="bg-white shadow sm:rounded-lg">
                                     <div className="px-4 py-5 sm:px-6 mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                                         <div className="">
                                             <h3 className="text-lg font-medium leading-6 text-gray-900">Estructura en 3D</h3>
                                             <p className="max-w-2xl mt-1 text-sm text-gray-500">Visualiza la fórmula taquigráfica renderizada en 3D del {arrayChem}.</p>
                                         </div>
-                                        <div className="relative top-0 right-0 justify-self-end flex items-center">
+                                        <div className="relative top-0 right-0 justify-self-end">
                                             <CubeTransparentIcon className="w-16 top-0 text-gray-900" />
                                             <p className="text-gray-900 font-light ps-px">Modelo Interactivo</p>
                                         </div>
                                     </div>
                                 </div>
                                 <br />
-                                <div className="overflow-hidden">
-                                    <div className="aspect-w-1 aspect-h-1">
-                                        <iframe
-                                            className="w-full h-full"
-                                            id="3DMol"
-                                            srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 100%; height: 100%; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`}
-                                        />
-                                    </div>
-                                </div>
-
+                                <iframe className="w-full overflow-hidden h-96" id="3DMol" srcDoc={`<script src="https://3Dmol.org/build/3Dmol-min.js"></script><div id="3D" style="width: 40rem; height:40rem; overflow: hidden;" class='viewer_3Dmoljs' data-cid="${cid}" data-backgroundcolor='0xffffff' data-style='stick'></div>`} width="500" height="500"></iframe>
                             </>
-
+                            
                         );
                     } else {
                         return null;
