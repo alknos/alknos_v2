@@ -31,21 +31,26 @@ export default function Navbar() {
                     <Link href="/#prices" scroll={true} className="text-sm font-light text-black hover:text-gray-600 duration-200">
                       Planes
                     </Link>
+                    <br />
                     <Link href="/about" className="text-sm font-light text-black hover:text-gray-600 duration-200">
                       Nosotros
                     </Link>
+                    <br />
                     <Link href="/contacts" className="text-sm font-light text-black hover:text-gray-600 duration-200">
                       Contáctanos
                     </Link>
+                    <br />
+                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                      <Link href="/register" className="whitespace-nowrap text-sm font-light text-black hover:text-gray-600 duration-200">
+                        Regístrate
+                      </Link>
+                      <Link href="/login" className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 rounded-md">
+                        <span className="block text-white px-4 py-2 text-sm font-light rounded-md bg-blue-900">Inicia Sesión</span>
+                      </Link>
+                    </div>
                   </Popover.Group>
-                  <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                    <Link href="/register" className="whitespace-nowrap text-sm font-light text-black hover:text-gray-600 duration-200">
-                      Regístrate
-                    </Link>
-                    <Link href="/login" className="ml-8 whitespace-nowrap inline-flex items-center justify-center m-4 p-1 rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 rounded-md">
-                      <span className="block text-white px-4 py-2 text-sm font-light rounded-md bg-blue-900">Inicia Sesión</span>
-                    </Link>
-                  </div>
+
+
                 </div>
                 <Transition
                   as={Fragment}
